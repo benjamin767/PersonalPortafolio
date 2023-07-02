@@ -1,14 +1,22 @@
 const { User } = require("../../../db");
+const jwt = require("jsonwebtoken");
+const { secret, expires } = process.env;
 
 module.exports = {
     createUser: async (email, password, name) => {
-        if(!email || !password || !name) throw new Error("Faltan argumentos para crear una cuenta.")
-        const user = await User.create({
+        if(!email || !password || !name) throw new Error("Faltan argumentos para crear una cuenta.");
+        return await User.create({
             email, 
             password, 
             name 
+        }).then(user => {
+            const payload = {
+                id: user.id,
+                name: user.name
+            };
+            let token = jwt.sign(payload, secret, { expiresIn: expires });
+            return { token, name: user.name };
         });
-        return user;
     },
     getUsers: async () => {
         const users = await User.findAll();
