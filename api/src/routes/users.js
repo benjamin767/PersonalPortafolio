@@ -36,10 +36,10 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-    const { id } = req.params;
+    const { authorization } = req.headers;
     const { name, password } = req.body;
     try{
-        const response = await userController.updateUser(id, name, password);
+        const response = await userController.updateUser(authorization, name, password);
         res.status(201).send({ msg: response });
     } catch(error) {
         res.status(404).send({ msg: error.message });

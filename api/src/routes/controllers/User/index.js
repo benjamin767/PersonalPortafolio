@@ -24,12 +24,17 @@ module.exports = {
     },
     getOneUser: async (email) => {
         if(!email) throw new Error("Falta pasar email");
-        const user = await User.findOne({
+        let user = await User.findOne({
             where: {
                 email
             }
         });
         if(!user) throw new Error("No existe el usuario");
+        user = {
+            id: user.id,
+            name: user.name,
+            email: user.name,
+        }
         return user;
     },
     deleteUser: async (id) => {
@@ -40,16 +45,20 @@ module.exports = {
         if(!response) throw new Error("Ups, No conocemos este usuario.");
         return "Usuario eliminado.";
     },
-    updateUser: async (id, name, password) => {
-        if(!id) throw new Error("Faltan args para actualizar usuario.")
+    updateUser: async (auth, name, password) => {
+        if(!auth || !auth.toLowerCase().startsWith("bearer")) throw new Error("No estas autorizado para realizar esta acción");
         if(!name || !password) throw new Error("Faltan datos para actualizar usuario.");
+        const token = auth.split(" ")[1];
+        const data = jwt.verify(token, secret);
+        console.log(data);
         const response = await User.update({
             name,
             password
         },{
-            where: { id }
+            where: { id: data.id },
+            individualHooks: true,
         });
-        console.log(response);
+        
         if(!response[0]) throw new Error("Ups, No conocemos este usuario");
         return  "Usuario actualizado.";
     },
