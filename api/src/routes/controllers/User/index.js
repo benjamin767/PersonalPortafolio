@@ -50,7 +50,6 @@ module.exports = {
         if(!name || !password) throw new Error("Faltan datos para actualizar usuario.");
         const token = auth.split(" ")[1];
         const data = jwt.verify(token, secret);
-        console.log(data);
         const response = await User.update({
             name,
             password
