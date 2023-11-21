@@ -26,6 +26,16 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/login", async (req, res) => {
+    const { email, name, password } = req.query;
+    try {
+        const user = await userController.login(email, name, password);
+        res.status(200).json(user);
+    } catch(error) {
+        res.status(404).send( { msg: error.message });
+    }
+});
+
 router.delete("/:id", async (req, res) => {
     const { id } = req.params;
     try {

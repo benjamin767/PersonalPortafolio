@@ -12,7 +12,8 @@ module.exports = {
         }).then(user => {
             const payload = {
                 id: user.id,
-                name: user.name
+                name: user.name,
+                email: user.email
             };
             let token = jwt.sign(payload, secret, { expiresIn: expires });
             return { token, name: user.name };
@@ -60,5 +61,22 @@ module.exports = {
         
         if(!response[0]) throw new Error("Ups, No conocemos este usuario");
         return  "Usuario actualizado.";
+    },
+    login: async (email, name, password) => {
+        if((!email && !password) || (!name && !password)) new Error("Ups, user o password incorrectos!");
+        const response = await User.findOne({
+            where: {
+                email,
+                name
+            }
+        }).then((user) => {
+            const payload = {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+            };
+            let token = jwt.sign(payload, secret, { expiresIn: expires });
+            return { token, name: user.name };
+        })
     },
 };
