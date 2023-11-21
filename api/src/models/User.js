@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
             allowNull: false,
             primaryKey: true,
         },
+        rol: {
+            type: DataTypes.STRING,
+            defaultValue: "ADMIN"
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
