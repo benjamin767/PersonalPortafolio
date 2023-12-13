@@ -1,5 +1,7 @@
 const { User } = require("../../../db");
+const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
+const { Op } = require("sequelize");
 const { secret, expires } = process.env;
 
 module.exports = {
@@ -16,7 +18,7 @@ module.exports = {
                 email: user.email
             };
             let token = jwt.sign(payload, secret, { expiresIn: expires });
-            return { token, name: user.name };
+            return { token, id: user.id };
         });
     },
     getUsers: async () => {
@@ -63,20 +65,45 @@ module.exports = {
         return  "Usuario actualizado.";
     },
     login: async (email, name, password) => {
-        if((!email && !password) || (!name && !password)) new Error("Ups, user o password incorrectos!");
-        const response = await User.findOne({
-            where: {
-                email,
-                name
-            }
-        }).then((user) => {
-            const payload = {
-                id: user.id,
-                name: user.name,
-                email: user.email,
-            };
-            let token = jwt.sign(payload, secret, { expiresIn: expires });
-            return { token, name: user.name };
-        })
+        if(!(email && password) && !(name && password)) new Error("Ups, user or password is not correct!");
+        let response;
+        if(email) {
+            response = await User.findOne({
+                where: {
+                    email
+                }
+            }).then((res) => {
+                if(!res) return res;
+                const payload = {
+                    id: res.id,
+                    name: res.name,
+                    email: res.email,
+                };
+                const isCorrect = bcrypt.compareSync(password, res.password);
+                if(isCorrect){
+                    let token = jwt.sign(payload, secret, { expiresIn: expires });
+                    return { token, id: res.id };
+                }
+            });
+        } else {
+            response = await User.findOne({
+                where: {
+                    name
+                }
+            }).then((res) => {
+                if(!res) return res;
+                const payload = {
+                    id: res.id,
+                    name: res.name,
+                    email: res.email,
+                };
+                const isCorrect = bcrypt.compareSync(password, res.password);
+                if(isCorrect){
+                    let token = jwt.sign(payload, secret, { expiresIn: expires });
+                    return { token, id: res.id };
+                }
+            });
+        }
+        return response;
     },
 };
