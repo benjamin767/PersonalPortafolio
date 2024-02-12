@@ -1,0 +1,67 @@
+header {
+    background-color: #111;
+    padding: 40px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    color: #ddd;
+    position: fixed;
+    width: 100%;
+    top: 0
+}
+
+header nav .img {
+    padding: 10px;
+    background-color: green;
+}
+
+header nav .initials {
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 500;
+    font-size: xx-large;
+    font-style: normal;
+    position: relative;
+    left: 140px;
+    transition: text-shadow .3s ease-in-out;
+}
+
+header nav .initials:hover {
+    cursor: pointer;
+    text-shadow: 0 0 10px #ddd, 0 0 1px #ddd, 0 0 5px #ddd, 0 0 10px rgb(0, 255, 55), 0 0 20px rgb(0, 255, 55), 0 0 30px rgb(0, 255, 55), 0 0 40px rgb(0, 255, 55), 0 0 100px rgb(0, 255, 55); /* Efecto de luz */
+}
+
+header nav .initials span {
+    color: green;
+}
+
+header nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+header nav ul li {
+    padding: 10px;
+    transition: all .3 ease;
+}
+
+header nav ul li:hover {
+    background-color: green;
+    color: #111;
+    border-radius: .5rem .5rem 1px 1px;   
+    cursor: pointer;
+    animation: mover .6s ease forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes mover {
+    0% {
+      transform: translateY(0); /* En el inicio, el elemento no se mueve */
+    }
+    100% {
+      transform: translateY(-2px);
+    }
+}

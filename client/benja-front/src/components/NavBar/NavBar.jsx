@@ -1,9 +1,11 @@
 import React from "react";
+import "./NavBar.css";
 
 const NavBar = () => {
     return (<header>
     <nav>
-        <div><span>BM</span></div>
+        <div className="img"></div>
+        <div className="initials"><span>B</span>M</div>
         <ul>
             <li>Sobre Mi</li>
             <li>Proyectos</li>
