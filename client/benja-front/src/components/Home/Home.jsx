@@ -4,13 +4,14 @@ import { createUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
+import AboutMe from "../AboutMe/AboutMe";
 
 const Home = () => {
     const dispatch = useDispatch();
     const [ input, setInput]  = useState({});
     return (<>
         <NavBar/>
-        <h1>En verdad es que esto va ser un login por el momento.</h1>
+        <AboutMe/>
         <Footer/>
     </>);
 };
