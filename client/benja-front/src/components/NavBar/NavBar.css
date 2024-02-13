@@ -1,6 +1,7 @@
 header {
-    background-color: #111;
-    padding: 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 header nav {
@@ -9,9 +10,7 @@ header nav {
     align-items: center;
     flex-direction: row;
     color: #ddd;
-    position: fixed;
-    width: 100%;
-    top: 0
+    background-color: #111;
 }
 
 header nav .img {
