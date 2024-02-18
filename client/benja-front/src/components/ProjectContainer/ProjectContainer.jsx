@@ -4,7 +4,10 @@ import "./ProjectContainer.css";
 
 const ProjectContainer = ({ projects })=> {
     return(<article>
-        { projects.length > 0 ? projects.map((project) => <Project/>) : <p>No hay nada que ver</p> }
+        <h3>Mis Proyectos</h3>
+        <div>
+            { projects.length > 0 ? projects.map((project) => <Project/>) : <p>No hay nada que ver</p> }
+        </div>
     </article>);
 };
 
