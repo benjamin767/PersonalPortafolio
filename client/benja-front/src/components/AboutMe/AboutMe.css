@@ -1,0 +1,40 @@
+.about-me {
+    padding-top: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    color: #ddd;
+}
+
+.about-me div {
+    width: 40%;
+}
+
+.about-me .description-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    width: 26.2ch;
+    white-space: nowrap;
+    border-right: 2px solid;
+    animation: typing 2s steps(31),
+                blink .5s infinite step-end alternate;
+    overflow: hidden;
+}
+
+.title span {
+    color: green;
+}
+
+@keyframes typing {
+    from { width: 0;}
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}

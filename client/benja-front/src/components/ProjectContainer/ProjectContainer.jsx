@@ -1,5 +1,6 @@
 import React from "react";
 import Project from "../Project/Project";
+import "./ProjectContainer.css";
 
 const ProjectContainer = ({ projects })=> {
     return(<article>
