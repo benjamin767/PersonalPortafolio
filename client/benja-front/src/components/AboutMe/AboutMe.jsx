@@ -1,12 +1,13 @@
 import React from "react";
 import "./AboutMe.css";
+import perfil from "./img/bmino.png"
 
 const AboutMe = () => {
-    return (<section className="about-me">
+    return (<section id="about-me">
         <div className="img-profile">
             <img 
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQytg1EK3tnFPPWkfpv06FvWtQ9A7IvteLQLj49jVv_qw&s"
-            alt="me"
+                src={ perfil }
+                alt="me"
             />
         </div>
         <div className="description-container">

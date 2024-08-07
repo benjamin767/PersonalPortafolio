@@ -7,9 +7,15 @@ const NavBar = () => {
         <div className="img"></div>
         <div className="initials"><span>B</span>M</div>
         <ul>
-            <li>Sobre Mi</li>
-            <li>Proyectos</li>
-            <li>Contacto</li>
+            <li> 
+                Sobre Mi
+            </li>
+            <li>
+                Proyectos
+            </li>
+            <li>
+                Contacto
+            </li>
         </ul>
     </nav>
     </header>);

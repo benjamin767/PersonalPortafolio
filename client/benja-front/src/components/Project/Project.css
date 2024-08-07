@@ -1,11 +1,50 @@
 .card {
-    border: 1px solid;
-    height: 320px;
-    width: 30%;
+    background-color: #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    height: 60%;
+    width: 32%;
     margin-inline: 4.5px;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+}
+
+.card .web-img {
+    border-radius: 2rem;
+    margin: 4.5px;
+    width: 40%;
+    height: 90%;
 }
 
 .card h2 {
+    margin-top: 4px;
+}
+
+.card p {
+    font-family: "Prompt", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    margin: 4.5px;
+    padding: 0;
     margin: 0;
+}
+
+.card ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style: none;
+    grid-column: 2/3;
+    grid-row: 2/2;
+    padding-inline: 1rem;
+}
+
+.card ul li {
+    margin: 1px;
 }

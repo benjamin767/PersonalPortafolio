@@ -1,4 +1,4 @@
-.about-me {
+#about-me {
     padding-top: 7%;
     display: flex;
     justify-content: center;
@@ -7,11 +7,11 @@
     color: #ddd;
 }
 
-.about-me div {
+#about-me div {
     width: 40%;
 }
 
-.about-me .description-container {
+#about-me .description-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
