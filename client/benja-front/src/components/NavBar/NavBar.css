@@ -18,13 +18,16 @@ header nav .img {
     background-color: green;
 }
 
-header nav .initials {
+header nav .initials{
+    left: 140px;
+}
+
+.initials {
     font-family: "Silkscreen", sans-serif;
     font-weight: 500;
     font-size: xx-large;
     font-style: normal;
     position: relative;
-    left: 140px;
     transition: text-shadow .3s ease-in-out;
 }
 
@@ -33,7 +36,7 @@ header nav .initials:hover {
     text-shadow: 0 0 10px #ddd, 0 0 1px #ddd, 0 0 5px #ddd, 0 0 10px rgb(0, 255, 55), 0 0 20px rgb(0, 255, 55), 0 0 30px rgb(0, 255, 55), 0 0 40px rgb(0, 255, 55), 0 0 100px rgb(0, 255, 55); /* Efecto de luz */
 }
 
-header nav .initials span {
+.initials span {
     color: green;
 }
 

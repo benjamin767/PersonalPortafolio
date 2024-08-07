@@ -9,3 +9,7 @@ footer {
     opacity: .9;
     color: #ddd;
 }
+
+footer ul {
+    list-style: none;
+}

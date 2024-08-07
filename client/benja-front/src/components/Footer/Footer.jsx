@@ -4,9 +4,10 @@ import "./Footer.css";
 const Footer = () => {
     return (<footer>
         <span>Benjamin Miño</span>
+        <div className="initials"><span>B</span>M</div>
         <ul>
-            <li>Linkedin</li>
-            <li>Gmail</li>
+            <li> <ion-icon name="logo-linkedin"></ion-icon> Linkedin </li>
+            <li> <ion-icon name="mail-outline"></ion-icon> Gmail </li>
         </ul>
     </footer>);
 };
