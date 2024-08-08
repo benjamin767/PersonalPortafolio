@@ -12,6 +12,10 @@
     font-style: normal;
 }
 
+#project-container .project-title span {
+    color: rgb(2, 124, 2);
+}
+
 #project-container #container-cards {
     height: 650px;
     margin: 0;

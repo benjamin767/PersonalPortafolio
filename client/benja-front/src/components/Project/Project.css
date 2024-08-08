@@ -1,6 +1,8 @@
 .card {
     background-color: #eafae9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: -4px 9px 8px -5px rgb(1, 36, 1);;
+    -moz-box-shadow: -4px 9px 8px -5px rgb(1, 36, 1);;
+    box-shadow: -4px 9px 8px -5px rgb(1, 36, 1);;
     height: 70%;
     width: 30%;
     margin-inline: 4.5px;
