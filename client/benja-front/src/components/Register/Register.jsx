@@ -19,9 +19,8 @@ const Register = () => {
         dispatch(createUser(input));
     };
     return (<>
-        <h1>En verdad es que esto va ser un login por el momento.</h1>
         <section className="register">
-            <h3>¡Registrate para una mejor experiencia!</h3>
+            <h2>¡Registrate para una mejor experiencia!</h2>
             <form>
                 <div className="blend"> 
                     <input 

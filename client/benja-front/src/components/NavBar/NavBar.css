@@ -3,6 +3,7 @@ header {
     width: 100%;
     top: 0;
     color: #eafae9;
+    z-index: 3;
 }
 
 header nav {
@@ -48,6 +49,15 @@ header nav ul {
 header nav ul li {
     padding: 10px;
     transition: all .3 ease;
+}
+
+header a {
+    text-decoration: none;
+    color: #eafae9;
+}
+
+header a:hover {
+    color: #111;
 }
 
 header nav ul li:hover {
