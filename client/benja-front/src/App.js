@@ -1,9 +1,9 @@
 import './App.css';
 import Home from './components/Home/Home.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
-import Register from './components/Register/Register.jsx';
+import Contact from './components/Contact/Contact.jsx';
 import { Route, Routes } from 'react-router-dom';
-
+import Footer from "../src/components/Footer/Footer";
 
 function App() {
   return (<>
@@ -15,9 +15,10 @@ function App() {
       />
       <Route 
         path='/register'
-        element={<Register/>}
+        element={<Contact/>}
       />
     </Routes>
+    <Footer/>
   </>);
 }
 
