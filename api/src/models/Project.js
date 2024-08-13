@@ -4,11 +4,11 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
     sequelize.define('project', {
-        name: {
+        title: {
             type: DataTypes.STRING,
             validate: {
                 notEmpty: {
-                    msg: "Benja, ingresá un nombre!"
+                    msg: "Benja, ingresá un titulo!"
                 }
             }
         },

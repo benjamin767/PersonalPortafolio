@@ -19,7 +19,8 @@ async function sendMail(from, text, name) {
     const mailOptions = {
         from: EMAIL_USER,
         to: "natanael.96.01@gmail.com",
-        subject: `ENVIADO DESDE PORTAFOLIO ${from}`,
+        priority: 'high',
+        subject: `ENVIADO DESDE PORTAFOLIO - ${name}`,
         html: `<p>
             ${text}.
 
@@ -38,7 +39,7 @@ router.post("/", async (req, res) => {
     const { email, text, name } = req.body;
     try {
         sendMail(email, text, name);
-        res.status(201).send("Mensaje enviado!")
+        res.status(201).send("Mensaje enviado!");
     }catch(error) {
         res.status(404).send(error.message);
     }
