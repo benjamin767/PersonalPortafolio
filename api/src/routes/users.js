@@ -6,7 +6,13 @@ router.post("/", async (req, res) => {
     const { email, password, name } = req.body;
     try {
         const user = await userController.createUser(email, password, name);
-        res.status(201).json(user);
+        res.status(201).cookie('Usuario-Token', user, {
+            expires: new Date(Date.now() + 3600000), // expira en 1 hora
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict'
+        });
+        res.status(201).send("¡Usuario Creado con exito!")
     } catch(error) {
         res.status(404).send({ msg: error.message });
     }
@@ -26,11 +32,17 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get("/login", async (req, res) => {
-    const { email, name, password } = req.query;
+router.post("/login", async (req, res) => {
+    const { email, name, password } = req.body;
     try {
         const user = await userController.login(email, name, password);
-        res.status(200).json(user);
+        res.status(200).cookie('Usuario-Token', user, {
+            expires: new Date(Date.now() + 3600000), // expira en 1 hora
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict'
+        });
+        res.send("Sesion Iniciada");
     } catch(error) {
         res.status(404).send( { msg: error.message });
     }
