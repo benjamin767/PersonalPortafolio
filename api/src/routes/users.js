@@ -66,7 +66,7 @@ router.post("/login", express.urlencoded({ extended: false }), async (req, res, 
 
 router.post('/logout', isAuthenticated, (req, res) => {
     // Eliminar el token JWT del cliente
-    res.clearCookie('token');
+    res.clearCookie('Usuario-Token');
     // Invalidar la sesión en el servidor
     req.session.destroy((err) => {
         if (err) {
