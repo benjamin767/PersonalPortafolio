@@ -4,12 +4,12 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const session = require('express-session');
-const SequelizeStore = require('./sequelize-store')
+const { store } =require("./db.js")
 
 require('./db.js');
 
 const server = express();
-const { secret } = process.env;12
+const { secret } = process.env;
 
 server.name = 'API';
 
@@ -26,14 +26,13 @@ server.use((req,res,next) => {
 });
 
 server.use(session({
-    store: new SequelizeStore({
-      db: sequelize,
-      table: 'Sessions'
-    }),
+    store,
     secret,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { 
+        maxAge: 24 * 60 * 60 * 1000 // 24 horas 
+    }
 }));
 
 server.use('/', routes);

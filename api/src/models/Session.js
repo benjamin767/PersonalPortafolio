@@ -2,17 +2,18 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('session', {
-        id: {
+        sid: {
             type: DataTypes.STRING,
-            defaultValue: DataTypes.UUIDV4,
-            allowNull: false,
             primaryKey: true,
+        },
+        userId:{ 
+            type: DataTypes.STRING
         },
         expires: {
             type: DataTypes.DATE
         },
         data: {
             type: DataTypes.TEXT
-        }
+        },
     });
 }

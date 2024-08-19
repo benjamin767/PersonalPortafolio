@@ -2,6 +2,8 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const {
   DB_USER, DB_PASSWORD, DB_HOST
 } = process.env;
@@ -33,7 +35,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { User } = sequelize.models;
 
+const store = new SequelizeStore({
+  db: sequelize,
+  table: 'Session',
+  sidColumn: 'id'
+});
+
 module.exports = {
   ...sequelize.models, //Para poder importar modelos
   conn: sequelize,
+  store,
 };
