@@ -16,12 +16,20 @@ export const getProfile = ({ user, password }) => async (dispatch) => {
 
 export const createUser = ({ email, name, password }) => async (dispatch) => {
     try {
-        const profile = await axios.post(`http://localhost:3001/users`,{email, name, password});
+        const profile = await axios.post(`http://localhost:3001/users`,{ email, name, password });
         dispatch({
             payload: profile.data,
             type: GET_PROFILE
         });
     } catch(error) {
         console.log(error.request.response);
+    }
+};
+
+export const sendEmail = async ({ email, name, text }) => {
+    try {
+        await axios.post(`http://localhost:3001/mail`, { email, name, text });
+    } catch(error) {
+        console.log(error.message);
     }
 };

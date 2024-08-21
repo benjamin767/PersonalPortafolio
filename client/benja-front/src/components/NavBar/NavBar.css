@@ -14,20 +14,28 @@ header nav {
     background-color: #111;
 }
 
-header nav .img {
+header nav .register-button {
     padding: 10px;
     background-color: rgb(2, 124, 2);
+    border-radius: 1rem;
+    border: none;
+    color: #111;
+    -webkit-box-shadow: -1px 4px 6px 1px rgba(19,107,14,0.69);
+    -moz-box-shadow: -1px 4px 6px 1px rgba(19,107,14,0.69);
+    box-shadow: -1px 4px 6px 1px rgba(19,107,14,0.69);
 }
 
-header nav .initials{
-    left: 140px;
+
+header nav .register-button:hover {
+    -webkit-box-shadow: -1px 4px 6px 1px rgb(56, 190, 3);
+    -moz-box-shadow: -1px 4px 6px 1px rgb(56, 190, 3);
+    box-shadow: -1px 4px 6px 1px rgb(56, 190, 3);
+    cursor: pointer;
+    background-color: rgb(3, 248, 48);
 }
 
-.initials {
-    font-family: "Silkscreen", sans-serif;
-    font-weight: 500;
-    font-size: xx-large;
-    font-style: normal;
+header nav .initials {
+    left: 35px; 
     position: relative;
     transition: text-shadow .3s ease-in-out;
 }
@@ -35,6 +43,13 @@ header nav .initials{
 header nav .initials:hover {
     cursor: pointer;
     text-shadow: 0 0 10px #ddd, 0 0 1px #ddd, 0 0 5px #ddd, 0 0 10px rgb(0, 255, 55), 0 0 20px rgb(0, 255, 55), 0 0 30px rgb(0, 255, 55), 0 0 40px rgb(0, 255, 55), 0 0 100px rgb(0, 255, 55); /* Efecto de luz */
+}
+
+.initials {
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 500;
+    font-size: xx-large;
+    font-style: normal;
 }
 
 .initials span {

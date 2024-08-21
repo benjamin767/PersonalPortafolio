@@ -15,8 +15,12 @@ const NavBar = () => {
 
     return (<header>
         <nav>
-            <div className="img"></div>
-            <div className="initials"><span>B</span>M</div>
+            <Link to="/register">
+                <div className="register-button">¡Registrate!</div>
+            </Link>
+            <Link to="/">
+                <div className="initials"><span>B</span>M</div>
+            </Link>
             <ul>
                 { 
                 pathname === "/" ? <>
@@ -53,7 +57,7 @@ const NavBar = () => {
                     </Link> 
                     </> 
                 }
-                <Link to="/register">
+                <Link to="/contact">
                     <li>
                         Contacto
                     </li>

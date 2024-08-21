@@ -11,7 +11,7 @@
 }
 
 .register h2 {
-    margin-block: 6%;
+    margin-top: 5rem;
     text-align: center;
 }
 
@@ -35,6 +35,19 @@ input:focus {
     outline: none;
 }
 
+.errors {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.errors p {
+    margin: 0 5px 1px 5px;
+    padding: none;
+    width: 40%;
+    font-size: small;
+    color: rgb(204, 9, 9);
+}
+
 .blend input {
     margin: 0 5px 20px 5px;
     padding: 15px;
@@ -43,7 +56,8 @@ input:focus {
 
 .register button {
     display: block;
-    margin: 3% auto;
+    margin-top: 3%;
+    margin-inline: auto;
     padding: 15px 0;
     width: 70%;
     background-color: rgb(44, 148, 3);
