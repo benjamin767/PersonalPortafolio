@@ -1,0 +1,22 @@
+.error-page {
+    color: #ddd;
+    text-align: center;
+}
+
+.error-page .error-title {
+    font-family: "Tilt Warp", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 9rem;
+    font-variation-settings:
+        "XROT" 0,
+        "YROT" 0;
+    margin-bottom: 0;
+}
+
+.error-msg {
+    font-family: "Prompt", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}

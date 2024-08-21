@@ -8,6 +8,7 @@ const Footer = () => {
         <ul>
             <li> <ion-icon name="logo-linkedin"></ion-icon> Linkedin </li>
             <li> <ion-icon name="mail-outline"></ion-icon> Gmail </li>
+            <li><ion-icon name="logo-github"></ion-icon> Github </li>
         </ul>
     </footer>);
 };
