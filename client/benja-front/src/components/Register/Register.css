@@ -54,7 +54,7 @@ input:focus {
     width: 40%;
 }
 
-.register button {
+.button-send {
     display: block;
     margin-top: 3%;
     margin-inline: auto;
@@ -69,7 +69,7 @@ input:focus {
     transition: all .4s ease-out;
 }
 
-.register button:hover {
+.button-send:hover {
     cursor: pointer;
     box-shadow: 1px 1px 1.5px rgb(3, 248, 48); /* Sombra más pronunciada al pasar el mouse */
     background-color: rgb(56, 190, 3);

@@ -83,6 +83,7 @@ const Register = () => {
                 </div>
                 <button
                     onClick = {(e) => handleClick(e)}
+                    className="button-send"
                 >
                     REGISTRARME
                 </button>
