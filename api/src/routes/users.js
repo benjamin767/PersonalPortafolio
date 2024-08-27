@@ -8,7 +8,7 @@ function isAuthenticated (req, res, next) {
 }
 
 router.get("/", isAuthenticated, async (req, res) => {
-    res.send('hello, ' + req.session.token + '!' +
+    res.send('hello, ' + req.session.id + '!' +
     ' <a href="/logout">Logout</a>');
 });
 
@@ -16,12 +16,12 @@ router.post("/", async (req, res) => {
     const { email, password, name } = req.body;
     try {
         const user = await userController.createUser(email, password, name);
-        res.cookie('Usuario-Token', user, {
-            expires: new Date(Date.now() + 86400000), // expira en 24 hora
+        res.cookie('Usuario-Token', user.token, {
+            expires: new Date(Date.now() + 86400000), // expira en 24 horas
             httpOnly: true,
             secure: true
         });
-        req.session.token = user.token;
+        req.session.id = user.id;
         res.status(201).send("¡Usuario Creado con exito!");
     } catch(error) {
         console.log(error);
@@ -30,10 +30,10 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/data", isAuthenticated, async (req, res) => {
-    const { email } = req.query;
+    const token = req.cookies["Usuario-Token"];
     try {
-        if(email) {
-            const user = await userController.getOneUser(email);
+        if(token) {
+            const user = await userController.getOneUser(token);
             return res.status(200).json(user);
         }
         const users = await userController.getUsers();
@@ -47,12 +47,12 @@ router.post("/login", express.urlencoded({ extended: false }), async (req, res, 
     const { email, name, password } = req.body;
     try {
         const user = await userController.login(email, name, password);
-        req.session.token = user.token;
+        req.session.id = user.id;
         // req.session.save(function (err) {
         //     if (err) return next(err);
         //     res.redirect('/');
         // });
-        res.status(200).cookie('Usuario-Token', user, {
+        res.status(200).cookie('Usuario-Token', user.token, {
             expires: new Date(Date.now() + 3600000), // expira en 1 hora
             httpOnly: true,
             secure: true,

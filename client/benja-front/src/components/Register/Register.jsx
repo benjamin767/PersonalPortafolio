@@ -3,18 +3,19 @@ import "./Register.css"
 import { createUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
-let isSend = false;
-
 export const validation = (data, isClic) => {
     let errors = {};
     if(!data.email) errors.email = "*El email es requerido";
     if(!data.name) errors.name = "*El nombre es requerido";
     if(!data.password) errors.password = "*La contraseña es obligatorio";
-    if((!data.password || !data.name || !data.email) && isSend) errors.canSend = "Todos los campos deben ser rellenados para poder registrarte";
-    else if((!data.text || !data.name || !data.email) && isClic) errors.canSend = "Todos los campos deben ser rellenados para poder registrarte";
+    if(data.hasOwnProperty("password") && data.hasOwnProperty("name") && (!data.password || !data.name || !data.email) && isClic) 
+        errors.canSend = "Todos los campos deben ser rellenados";
+    else if(data.hasOwnProperty("text") && (!data.text || !data.name || !data.email) && isClic) 
+        errors.canSend = "Todos los campos deben ser rellenados";
+    else if((!data.password || !data.email) && isClic) 
+        errors.canSend = "Todos los campos deben ser rellenados";
     else {
-        errors.canSend = "";
-        isSend = false;
+        errors.canSend = undefined;
     }
     if(!data.text) errors.text = "*Escriba un mensaje porfavor*";
     return errors;
@@ -31,15 +32,13 @@ const Register = () => {
 
     const handleChange = (event) => { 
         event.preventDefault();
-        isSend = false;
         setInput( { ...input, [event.target.name]: event.target.value } );
-        setErrors( validation({ ...input, [event.target.name]: event.target.value }, isSend) );
+        setErrors( validation({ ...input, [event.target.name]: event.target.value }, false) );
     }; 
     const handleClick = (e) => {
-        isSend = true;
         e.preventDefault();
         setErrors( validation({ ...input }))
-        if(!isSend){
+        if(!errors.canSend){
             dispatch(createUser(input));
             setInput({
                 email: "",

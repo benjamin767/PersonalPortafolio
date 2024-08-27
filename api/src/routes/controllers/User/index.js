@@ -25,20 +25,23 @@ module.exports = {
         const users = await User.findAll();
         return users;
     },
-    getOneUser: async (email) => {
-        if(!email) throw new Error("Falta pasar email");
+    getOneUser: async (token) => {
+        if(!token) throw new Error("Es necesario tener un token valido para manipular datos del servidor.");
+        console.log(token)
+        const data = jwt.verify(token, secret);
+
         let user = await User.findOne({
             where: {
-                email
+                email: data.email
             }
         });
         if(!user) throw new Error("No existe el usuario");
-        user = {
+        const userData = {
             id: user.id,
             name: user.name,
-            email: user.name,
+            email: user.email,
         }
-        return user;
+        return userData;
     },
     deleteUser: async (id) => {
         if(!id) throw new Error("faltan args para eliminar un usuario.");

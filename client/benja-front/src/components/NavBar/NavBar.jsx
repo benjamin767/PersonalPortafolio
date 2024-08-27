@@ -11,7 +11,6 @@ const NavBar = () => {
             behavior: "smooth"
         })
     };
-    console.log(pathname)
 
     return (<header>
         <nav>

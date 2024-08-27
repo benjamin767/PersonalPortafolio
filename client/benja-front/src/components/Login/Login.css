@@ -7,6 +7,10 @@
     color: #ddd;
 }
 
-.login #login-form input {
-    margin-block: 5%;
+.login #login-form {
+    width: 100%;
+}
+
+.login #login-form div input {
+    margin-block: 1%;
 }
