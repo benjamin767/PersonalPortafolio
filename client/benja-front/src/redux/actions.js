@@ -23,7 +23,10 @@ export const createUser = ({ email, name, password }) => async (dispatch) => {
     try {
         const profile = await axios.post(`http://localhost:3001/users`,{ email, name, password });
         dispatch({
-            payload: profile.headers["Set-Cookie"],
+            payload: {
+                name: profile.data.name,
+                id: profile.data.id
+            },
             type: GET_PROFILE
         });
     } catch(error) {
@@ -39,11 +42,9 @@ export const login = ({ email, password }) => async (dispatch) => {
         }, {
             responseType: "json",
         }).then((res) => {
-            const cookie = setCookie.get();
-            console.log(cookie)
             dispatch({ 
                 type: LOGIN,
-                payload: cookie
+                payload: res.data
             });
         });
     } catch(error) {

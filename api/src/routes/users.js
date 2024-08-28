@@ -22,7 +22,12 @@ router.post("/", async (req, res) => {
             secure: true
         });
         req.session.id = user.id;
-        res.status(201).send("¡Usuario Creado con exito!");
+        res.status(201).json({ 
+            msg: "¡Usuario Creado con exito!",
+            name: user.name,
+            id: user.id,
+            email: user.email
+        });
     } catch(error) {
         console.log(error);
         res.status(404).send({ msg: error.message });
@@ -52,13 +57,18 @@ router.post("/login", express.urlencoded({ extended: false }), async (req, res, 
         //     if (err) return next(err);
         //     res.redirect('/');
         // });
-        res.status(200).cookie('Usuario-Token', user.token, {
+        res.cookie('Usuario-Token', user.token, {
             expires: new Date(Date.now() + 3600000), // expira en 1 hora
             httpOnly: true,
             secure: true,
             sameSite: 'strict'
         });
-        res.send("Sesion Iniciada");
+        res.status(201).json({
+            msg: "Sesion Iniciada",
+            id: user.id,
+            name: user.name,
+            email: user.email
+        });
     } catch(error) {
         res.status(404).send( { msg: error.message });
     }

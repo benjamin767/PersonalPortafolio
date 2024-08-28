@@ -18,7 +18,12 @@ module.exports = {
                 email: user.email
             };
             let token = jwt.sign(payload, secret, { expiresIn: expires });
-            return { token, id: user.id };
+            return { 
+                token, 
+                id: user.id,
+                name: user.name,
+                email: user.email
+            };
         });
     },
     getUsers: async () => {
@@ -85,7 +90,12 @@ module.exports = {
                 const isCorrect = bcrypt.compareSync(password, res.password);
                 if(isCorrect){
                     let token = jwt.sign(payload, secret, { expiresIn: expires });
-                    return { token, id: res.id };
+                    return { 
+                        token, 
+                        id: res.id,
+                        name: res.name,
+                        email: res.email
+                     };
                 }
             });
         } else {

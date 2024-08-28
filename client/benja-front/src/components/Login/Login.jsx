@@ -15,7 +15,7 @@ const Login = () => {
     const handleChange = (event) => {
         event.preventDefault();
         setInput({ ...input, [event.target.name]: event.target.value });
-        setErrors( validation({ ...input, [event.target.name]: event.target.value }) )
+        setErrors( validation({ ...input, [event.target.name]: event.target.value }) );
     };
 
     const handleClick =  async (event) => {
@@ -23,6 +23,10 @@ const Login = () => {
         await setErrors(validation(input,true));
         if(!errors.canSend) {
             await dispatch(login(input));
+            setInput({ 
+                email: "",
+                password: ""
+            });
         }
     };
 
