@@ -49,6 +49,7 @@ export const login = ({ email, password }) => async (dispatch) => {
         });
     } catch(error) {
         console.log(error.message);
+        return true;
     }
 };
 
