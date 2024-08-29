@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Register.css"
 import { createUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import ReactModal from "react-modal";
+let msg;
 
 export const validation = (data, isClic) => {
     let errors = {};
@@ -23,6 +25,8 @@ export const validation = (data, isClic) => {
 
 const Register = () => {
     const dispatch = useDispatch();
+    const [ isOk, setIsOk ] = useState(false);
+    const [ isOpen, setIsOpen ] = useState(false);
     const [input, setInput] = useState({
         email: "",
         name: "",
@@ -37,16 +41,32 @@ const Register = () => {
     }; 
     const handleClick = (e) => {
         e.preventDefault();
-        setErrors( validation({ ...input }))
+        setErrors( validation({ ...input }, true))
         if(!errors.canSend){
-            dispatch(createUser(input));
-            setInput({
-                email: "",
-                name: "",
-                password: ""
+            dispatch(createUser(input))
+            .then(res => {
+                if(res){
+                    msg = res.data;
+                    // setErrors({...errors, canSend: res.data.msg});
+                    console.log(res.data)
+                    setIsOk(false);
+                    setIsOpen(true);
+                } else {
+                    setIsOk(true);
+                    setIsOpen(true);
+                    setInput({
+                        email: "",
+                        name: "",
+                        password: ""
+                    });
+                }
             });
         }
     };
+    const handleOk = () => {
+        setIsOpen(false);
+    };
+
     return (<>
         <section className="register">
             <h2>¡Registrate para una mejor experiencia!</h2>
@@ -89,6 +109,47 @@ const Register = () => {
                 <div className="errors">
                     { errors.canSend ? <p>{errors.canSend}</p> : null }
                 </div>
+                <ReactModal
+                    isOpen={isOpen}
+                    shouldCloseOnEsc={false}
+                    ariaHideApp={false}
+                    data={
+                        { background: "dark" }
+                    }
+                    style={{
+                        overlay: {
+                            position: "fixed",
+                            backgroundColor: "rgba(0, 0, 0, 0.75)"
+                        },
+                        content: {
+                            position: 'absolute',
+                            color: "#aaa",
+                            top: '35%',
+                            left: '20%',
+                            right: '20%',
+                            bottom: '35%',
+                            border: '1px solid #444',
+                            background: '#111',
+                            overflow: 'auto',
+                            WebkitOverflowScrolling: 'touch',
+                            borderRadius: '4px',
+                            outline: 'none',
+                            textAlign: "center"
+                          }
+                    }}
+                >
+                    { isOk ? <>
+                        <p> ¡Usuario creado con exito! </p>
+                        <button
+                            onClick={handleOk}
+                        >OK</button>
+                    </> : <>
+                        <p>Ups, algo salio mal... <br/>{msg}</p>
+                        <button
+                            onClick={handleOk}
+                        >OK</button>
+                    </> }
+                </ReactModal>
             </form>
         </section>
     </>);

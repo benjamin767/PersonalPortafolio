@@ -31,6 +31,10 @@ export const createUser = ({ email, name, password }) => async (dispatch) => {
         });
     } catch(error) {
         console.log(error.request.response);
+        return { 
+            error: true,
+            data: error.request.response,
+        };
     }
 };
 
@@ -49,7 +53,10 @@ export const login = ({ email, password }) => async (dispatch) => {
         });
     } catch(error) {
         console.log(error.message);
-        return true;
+        return { 
+            error: true,
+            data: error.request.response,
+        };
     }
 };
 

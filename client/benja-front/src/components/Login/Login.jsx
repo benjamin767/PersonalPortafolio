@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions";
 import ReactModal from 'react-modal';
 import { useNavigate } from 'react-router';
+let msg;
 
 const Login = () => {
     const [ input, setInput ] = useState({
@@ -30,17 +31,18 @@ const Login = () => {
             await dispatch(login(input))
                 .then((res) => {
                     if(res){
+                        msg = res.data;
                         setIsOk(false);
                         setIsOpen(true);
                     } else {
                         setIsOk(true);
                         setIsOpen(true);
+                        setInput({ 
+                            email: "",
+                            password: ""
+                        });
                     }
                 });
-            setInput({ 
-                email: "",
-                password: ""
-            });
         }
     };
     const handleSuccess = () => {
@@ -117,7 +119,7 @@ const Login = () => {
                         >OK</button>
                     </> 
                     : <>
-                        <p>Ups, algo salio mal</p> 
+                        <p>Ups, algo salio mal... <br/> {msg}</p> 
                         <button
                             className="ok"
                             onClick={ () => setIsOpen(false) }
