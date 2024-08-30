@@ -2,6 +2,7 @@ import React from "react";
 import "./Profile.css";
 import DataProjects from "../DataProjects/DataProjects";
 import { useSelector } from "react-redux";
+import ImgCanvas from "../ImgCanvas/ImgCanvas";
 
 const Profile = () => {
     const { profile } = useSelector(state => state)
@@ -22,6 +23,7 @@ const Profile = () => {
             </ul>
             <button>Editar Datos</button>
         </aside>
+        <ImgCanvas/>
     </div>);
 };
 
