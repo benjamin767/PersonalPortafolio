@@ -4,12 +4,13 @@ import setCookie from 'js-cookie';
 export const GET_PROFILE = "GET_PROFILE";
 export const LOGIN = "LOGIN";
 export const COOKIE_SAVED = "COOKIE_SAVED";
+export const LOGOUT = "LOGOUT";
 
 axios.defaults.withCredentials = true;
 
-export const getProfile = ({ user, password }) => async (dispatch) => {
+export const getProfile = () => async (dispatch) => {
         try {
-            const profile = await axios.get(`http://localhost:3001/users?email=${user}`);
+            const profile = await axios.get(`http://localhost:3001/users/data`);
             dispatch({
                 payload: profile.data,
                 type: GET_PROFILE
@@ -57,6 +58,20 @@ export const login = ({ email, password }) => async (dispatch) => {
             error: true,
             data: error.request.response,
         };
+    }
+};
+
+export const logout = () => async (dispatch) => {
+    try {
+        await axios.post("http://localhost:3001/users/logout")
+        .then(() => {
+            dispatch({
+                type: LOGOUT,
+                payload: null
+            })
+        });
+    } catch(error) {
+        console.log(error.message)
     }
 };
 

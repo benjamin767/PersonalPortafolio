@@ -20,6 +20,7 @@ header nav .register-button {
     border-radius: 1rem;
     border: none;
     color: #111;
+    margin-inline: .3rem;
     -webkit-box-shadow: -1px 4px 6px 1px rgba(19,107,14,0.69);
     -moz-box-shadow: -1px 4px 6px 1px rgba(19,107,14,0.69);
     box-shadow: -1px 4px 6px 1px rgba(19,107,14,0.69);
@@ -32,6 +33,18 @@ header nav .register-button:hover {
     box-shadow: -1px 4px 6px 1px rgb(56, 190, 3);
     cursor: pointer;
     background-color: rgb(3, 248, 48);
+}
+
+.login-redirect {
+    text-align: center;
+    color: rgb(2, 124, 2);
+    margin-block: auto;
+    transition: all .3s ease-out;
+}
+
+.login-redirect:hover {
+    color: rgb(3, 248, 48);
+    text-decoration: underline;
 }
 
 header nav .initials {

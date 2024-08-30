@@ -3,7 +3,7 @@ const router = express.Router();
 const userController = require("./controllers/User");
 
 function isAuthenticated (req, res, next) {
-    if (req.session.token) next()
+    if (req.session.id) next()
     else next('route')
 }
 
@@ -41,8 +41,7 @@ router.get("/data", isAuthenticated, async (req, res) => {
             const user = await userController.getOneUser(token);
             return res.status(200).json(user);
         }
-        const users = await userController.getUsers();
-        res.status(200).json(users);
+        throw new Error("Al parecer no podemos darte lo que necesitas :(")
     } catch(error) {
         res.status(404).send({ msg: error.message });
     }

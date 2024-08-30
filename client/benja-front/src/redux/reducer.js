@@ -1,7 +1,8 @@
 import { 
     COOKIE_SAVED,
     GET_PROFILE, 
-    LOGIN
+    LOGIN,
+    LOGOUT
 } from "./actions";
 
 const initialState = {
@@ -22,6 +23,8 @@ const rootReducer = (state = initialState, action) => {
             }
         case COOKIE_SAVED:
             return { ...state, cookies: { ...state.cookies, [action.payload.cookieName]: action.payload.cookieValue } };
+        case LOGOUT: 
+            return { ...state, profile: action.payload }
         default : return { ...state };
     }
 };
