@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import Footer from "../src/components/Footer/Footer";
 import Register from './components/Register/Register.jsx';
 import Login from "./components/Login/Login.jsx";
+import Profile from './components/Profile/Profile.jsx';
 
 function App() {
   return (<>
@@ -26,6 +27,10 @@ function App() {
       <Route 
         path='/login'
         element={<Login/>}
+      />
+      <Route 
+        path='/profile'
+        element={<Profile/>}
       />
     </Routes>
     <Footer/>
