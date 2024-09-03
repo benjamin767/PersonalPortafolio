@@ -30,8 +30,8 @@ input {
 input:focus {
     border-left: 1px solid rgb(44, 148, 3);
     border-top: 1px solid rgb(44, 148, 3);
-    border-right: 2px solid rgb(56, 190, 3);;
-    border-bottom: 2px solid rgb(56, 190, 3);;
+    border-right: 2px solid rgb(56, 190, 3);
+    border-bottom: 2px solid rgb(56, 190, 3);
     outline: none;
 }
 

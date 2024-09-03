@@ -39,6 +39,15 @@ export const createUser = ({ email, name, password }) => async (dispatch) => {
     }
 };
 
+export const putUser = async (email, name) => {
+    try {
+        const msg = await axios.put(`http://localhost:3001/users`, { email, name });
+        return msg;
+    } catch(error) {
+        console.log(error.message);
+    }   
+};
+
 export const login = ({ email, password }) => async (dispatch) => {
     try {
         await axios.post(`http://localhost:3001/users/login`, { 

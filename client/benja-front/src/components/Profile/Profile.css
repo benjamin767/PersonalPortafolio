@@ -1,11 +1,80 @@
 .profile {
-    margin-block: 15%;
-    margin-inline: 15%;
+    margin-block: 3%;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column-reverse;
     justify-content: center;
 }
 
 .profile-data {
-    margin-inline: 8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1% 3%;
+}
+
+.profile-data h2 {
+    text-align: center;
+}
+
+.profile-data ul {
+    list-style: none;
+    padding: 0;
+    margin: auto 12rem;
+}
+
+.profile-data ul li {
+    margin-bottom: 4px;
+}
+
+.profile-data form {
+    margin-block: auto;
+}
+
+.profile-data form div {
+    display: flex;
+    align-items: center;
+    margin-inline: 10rem;
+}
+
+.profile-data form div input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0;
+    margin-left: .5rem;
+    height: 50%;
+    width: 80%;
+}
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-button {
+    margin: 1% auto;
+    border-radius: 1rem;
+    border: none;
+    padding: .5rem;
+    background-color: rgb(2, 124, 2);
+    width: 50%;
+}
+
+.edit-button:hover {
+    background-color: rgb(10, 150, 3);
+    box-shadow: 1px 1px 1.5px rgb(12, 160, 4);
+}
+
+.cancel-button {
+    margin: 1% 0;
+    border-radius: 1rem;
+    border: none;
+    padding: .5rem;
+    width: 50%;
+}
+
+#edit-button {
+    width: 12%;
+    margin-inline: 0;
 }
