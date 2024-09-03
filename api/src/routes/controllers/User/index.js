@@ -32,7 +32,6 @@ module.exports = {
     },
     getOneUser: async (token) => {
         if(!token) throw new Error("Es necesario tener un token valido para manipular datos del servidor.");
-        console.log(token)
         const data = jwt.verify(token, secret);
 
         let user = await User.findOne({
@@ -56,21 +55,31 @@ module.exports = {
         if(!response) throw new Error("Ups, No conocemos este usuario.");
         return "Usuario eliminado.";
     },
-    updateUser: async (auth, name, password) => {
-        if(!auth || !auth.toLowerCase().startsWith("bearer")) throw new Error("No estas autorizado para realizar esta acción");
-        if(!name || !password) throw new Error("Faltan datos para actualizar usuario.");
-        const token = auth.split(" ")[1];
-        const data = jwt.verify(token, secret);
+    updateUser: async (auth, id, name, email) => {
+        if(!auth) throw new Error("No estas autorizado para realizar esta acción");
+        if(!name || !email) throw new Error("Faltan datos para actualizar usuario.");
+        const data = jwt.verify(auth, secret);
+        if(data.id !== id) throw new Error("No coinciden las credenciales para realizar esta accion");
         const response = await User.update({
             name,
-            password
+            email
         },{
             where: { id: data.id },
-            individualHooks: true,
         });
+
+        const payload = {
+            id,
+            name,
+            email,
+        }
         
         if(!response[0]) throw new Error("Ups, No conocemos este usuario");
-        return  "Usuario actualizado.";
+        let token = jwt.sign(payload, secret, { expiresIn: expires });
+
+        return  {
+            msg: "Usuario actualizado.",
+            token
+        };
     },
     login: async (email, name, password) => {
         if(!(email && password) && !(name && password)) new Error("Ups, user or password is not correct!");

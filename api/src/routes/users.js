@@ -49,8 +49,10 @@ router.get("/data", isAuthenticated, async (req, res) => {
 
 router.post("/login", express.urlencoded({ extended: false }), async (req, res, next) => {
     const { email, name, password } = req.body;
+
     try {
         const user = await userController.login(email, name, password);
+        console.log(user)
         req.session.id = user.id;
         // req.session.save(function (err) {
         //     if (err) return next(err);
@@ -69,6 +71,7 @@ router.post("/login", express.urlencoded({ extended: false }), async (req, res, 
             email: user.email
         });
     } catch(error) {
+        console.log(error)
         res.status(404).send( { msg: error.message });
     }
 });
@@ -98,13 +101,21 @@ router.delete("/:id", isAuthenticated, async (req, res) => {
 });
 
 router.put("/:id", isAuthenticated, async (req, res) => {
-    const { authorization } = req.headers;
-    const { name, password } = req.body;
+    const token = req.cookies["Usuario-Token"];
+    const { name, email } = req.body;
+    const { id } = req.params;
     try{
-        const response = await userController.updateUser(authorization, name, password);
-        res.status(201).send({ msg: response });
+        const response = await userController.updateUser(token, id, name, email);
+        res.cookie('Usuario-Token', response.token, {
+            expires: new Date(Date.now() + 3600000), // expira en 1 hora
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict'
+        });
+        res.status(201).send({ msg: response.msg });
     } catch(error) {
         res.status(404).send({ msg: error.message });
     }
 });
+
 module.exports = router;
