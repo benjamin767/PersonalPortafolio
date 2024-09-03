@@ -5,6 +5,7 @@ export const GET_PROFILE = "GET_PROFILE";
 export const LOGIN = "LOGIN";
 export const COOKIE_SAVED = "COOKIE_SAVED";
 export const LOGOUT = "LOGOUT";
+export const SET_SPINNER = "SET_SPINNER";
 
 axios.defaults.withCredentials = true;
 
@@ -39,10 +40,10 @@ export const createUser = ({ email, name, password }) => async (dispatch) => {
     }
 };
 
-export const putUser = async (email, name) => {
+export const putUser = async (email, name, id) => {
     try {
-        const msg = await axios.put(`http://localhost:3001/users`, { email, name });
-        return msg;
+        const msg = await axios.put(`http://localhost:3001/users/${id}`, { email, name });
+        return msg.data;
     } catch(error) {
         console.log(error.message);
     }   
@@ -76,7 +77,7 @@ export const logout = () => async (dispatch) => {
         .then(() => {
             dispatch({
                 type: LOGOUT,
-                payload: null
+                payload: {}
             })
         });
     } catch(error) {
@@ -100,4 +101,10 @@ export const saveCookie = (cookieName, cookieValue) => {
         payload: { cookieName, cookieValue }
       });
     };
-  };
+};
+
+export const setSpinner = () => {
+    return {
+        type: SET_SPINNER
+    }
+}
