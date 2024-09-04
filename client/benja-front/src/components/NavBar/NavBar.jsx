@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./NavBar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { getProfile, logout } from "../../redux/actions";
+import { logout } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from 'react-modal';
 
@@ -17,10 +17,6 @@ const NavBar = () => {
             behavior: "smooth"
         })
     };
-
-    useEffect(() => {
-        dispatch(getProfile())
-    });
 
     const handleLogout = () => {
         setIsOpen(true);

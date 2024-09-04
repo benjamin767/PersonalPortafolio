@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { validation } from "../Register/Register";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/actions";
+import { getProfile, login, setSpinner } from "../../redux/actions";
 import ReactModal from 'react-modal';
 import { useNavigate } from 'react-router';
 import Error404 from "../Error12345/Error"
+import Loading from "../Loading/Loading";
 let msg;
 
 const Login = () => {
@@ -18,7 +19,11 @@ const Login = () => {
     const [ isOk, setIsOk ] = useState(true);
     const [ isOpen, setIsOpen ] = useState(false);
     const navigate = useNavigate();
-    const userID = useSelector(state => state.profile ? state.profile.id : null);
+    const { profile, spinner } = useSelector(state => state);
+
+    useEffect(() => {
+        dispatch(getProfile());
+    },[dispatch]);
 
     const handleChange = (event) => {
         event.preventDefault();
@@ -49,11 +54,16 @@ const Login = () => {
     };
     const handleSuccess = () => {
         setIsOpen(false)
+        dispatch(setSpinner(false));
         navigate("/");
     };
 
         return (<section className="login">
-            {userID ? <Error404/> : <>
+        {  spinner ? <Loading/> 
+        : <>
+            { profile.id ? <Error404/> 
+            : 
+            <>
                 <h1 className="login-title">Ingrese ¡Campeon!</h1>
                 <form id="login-form">
                     <div>
@@ -86,7 +96,8 @@ const Login = () => {
                     </button>
                     { errors.canSend ? <p className="error"> { errors.canSend } </p> : null }
                 </form>
-            </>}
+            </> }
+        </> }
             <ReactModal
                 isOpen={isOpen}
                 shouldCloseOnEsc={false}

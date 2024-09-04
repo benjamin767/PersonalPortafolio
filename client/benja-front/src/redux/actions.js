@@ -10,18 +10,21 @@ export const SET_SPINNER = "SET_SPINNER";
 axios.defaults.withCredentials = true;
 
 export const getProfile = () => async (dispatch) => {
-        try {
-            const profile = await axios.get(`http://localhost:3001/users/data`);
-            dispatch({
-                payload: profile.data,
-                type: GET_PROFILE
-            });
-        } catch(error) {
-            console.log(error.request.response);
-        }
+    dispatch(setSpinner(true));
+    try {
+        const profile = await axios.get(`http://localhost:3001/users/data`);
+        dispatch({
+            payload: profile.data,
+            type: GET_PROFILE
+        });
+    } catch(error) {
+        console.log(error.request.response);
+    }
+    dispatch(setSpinner(false));
 };
 
 export const createUser = ({ email, name, password }) => async (dispatch) => {
+    dispatch(setSpinner(true));
     try {
         const profile = await axios.post(`http://localhost:3001/users`,{ email, name, password });
         dispatch({
@@ -40,16 +43,21 @@ export const createUser = ({ email, name, password }) => async (dispatch) => {
     }
 };
 
-export const putUser = async (email, name, id) => {
+export const putUser = (email, name, id) => async (dispatch) => {
+    dispatch(setSpinner(true));
     try {
-        const msg = await axios.put(`http://localhost:3001/users/${id}`, { email, name });
-        return msg.data;
+        await axios.put(`http://localhost:3001/users/${id}`, { email, name })
+        .then(res => {
+            console.log(res.data);
+        });
     } catch(error) {
         console.log(error.message);
     }   
+    dispatch(setSpinner(false));
 };
 
 export const login = ({ email, password }) => async (dispatch) => {
+    dispatch(setSpinner(true));
     try {
         await axios.post(`http://localhost:3001/users/login`, { 
             email, 
@@ -72,6 +80,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
+    dispatch(setSpinner(true));
     try {
         await axios.post("http://localhost:3001/users/logout")
         .then(() => {
@@ -83,6 +92,7 @@ export const logout = () => async (dispatch) => {
     } catch(error) {
         console.log(error.message)
     }
+    dispatch(setSpinner(false));
 };
 
 export const sendEmail = async ({ email, name, text }) => {
@@ -103,8 +113,9 @@ export const saveCookie = (cookieName, cookieValue) => {
     };
 };
 
-export const setSpinner = () => {
+export const setSpinner = (data) => {
     return {
-        type: SET_SPINNER
+        type: SET_SPINNER,
+        payload: data
     }
 }

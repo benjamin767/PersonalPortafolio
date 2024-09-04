@@ -52,7 +52,6 @@ router.post("/login", express.urlencoded({ extended: false }), async (req, res, 
 
     try {
         const user = await userController.login(email, name, password);
-        console.log(user)
         req.session.id = user.id;
         // req.session.save(function (err) {
         //     if (err) return next(err);

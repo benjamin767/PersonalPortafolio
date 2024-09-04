@@ -8,7 +8,7 @@ import {
 
 const initialState = {
     profile: {},
-    spinner: true
+    spinner: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -28,7 +28,7 @@ const rootReducer = (state = initialState, action) => {
         case LOGOUT: 
             return { ...state, profile: action.payload };
         case SET_SPINNER: 
-            return { ...state, spinner: !state.spinner };
+            return { ...state, spinner: action.payload };
         default : return { ...state };
     }
 };
