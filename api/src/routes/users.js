@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require("./controllers/User");
-
-function isAuthenticated (req, res, next) {
-    if (req.session.id) next()
-    else next('route')
-}
+const { isAuthenticated } = require("./Utils");
 
 router.get("/", isAuthenticated, async (req, res) => {
     res.send('hello, ' + req.session.id + '!' +
@@ -22,6 +18,7 @@ router.post("/", async (req, res) => {
             secure: true
         });
         req.session.id = user.id;
+        req.session.token = user.token;
         res.status(201).json({ 
             msg: "¡Usuario Creado con exito!",
             name: user.name,
@@ -53,6 +50,7 @@ router.post("/login", express.urlencoded({ extended: false }), async (req, res, 
     try {
         const user = await userController.login(email, name, password);
         req.session.id = user.id;
+        req.session.token = user.token;
         // req.session.save(function (err) {
         //     if (err) return next(err);
         //     res.redirect('/');
