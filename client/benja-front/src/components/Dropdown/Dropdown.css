@@ -30,7 +30,7 @@
   }
   
   .dropdown_item_list {
-    background: white;
+    background: #111;
     display: none;
     margin: 0;
     z-index: 1000;
@@ -57,7 +57,7 @@
   .item_list a:link {
     display: flex;
     /* gap: 0.8rem; */
-    color: #666666;
+    /* color: #666666; */
     font-weight: 600;
     text-decoration: none;
     padding: 0.8rem;
@@ -65,7 +65,4 @@
     transition: all 0.1s linear;
   }
   
-  .item_list a:hover {
-    background-color: gray;
-    color: white;
-  }
+  

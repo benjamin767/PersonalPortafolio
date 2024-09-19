@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./NavBar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { logout } from "../../redux/actions";
+import { getProfile, logout } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from 'react-modal';
 import Dropdown from "../Dropdown/Dropdown";
@@ -12,16 +12,10 @@ const NavBar = () => {
     const navigate = useNavigate();
     const [ isOpen, setIsOpen ] = useState(false);
     const userID = useSelector(state => state.profile ? state.profile.id : null );
-    const items = [
-        {
-            slug: "/profile", 
-            anchor: "Perfil"
-        },
-        {
-            slug: "/create_project", 
-            anchor: "Crear un proyecto"
-        }
-    ]
+    
+    useEffect(() => {
+        dispatch(getProfile())
+    }, [dispatch]);
 
     const handleClick = (idComponent) => {
         const compponent = document.getElementById(idComponent);
@@ -40,10 +34,26 @@ const NavBar = () => {
         setIsOpen(false);
     };
 
-    return (<header>|
+    const items = [
+        {
+            slug: "/profile", 
+            anchor: "Perfil"
+        },
+        {
+            slug: "/create-project", 
+            anchor: "Crear un proyecto"
+        },
+        {
+            action: handleLogout,
+            slug: "/", 
+            anchor: "Salir"
+        }
+    ];
+
+    return (<header>
         <nav>
             { userID ? <ul>
-                <Dropdown items={items} dropdownTitle={"Acciones"}/>
+                <Dropdown items={items} dropdownTitle={"Acciones"}/> 
             </ul> : <ul> 
                 <Link to="/register">
                     <div className="register-button">¡Registrate!</div>

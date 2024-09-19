@@ -58,6 +58,11 @@ const Login = () => {
         navigate("/");
     };
 
+    const toAgain = () => {
+        dispatch(setSpinner(false));
+        setIsOpen(false);
+    };
+
         return (<section className="login">
         {  spinner ? <Loading/> 
         : <>
@@ -138,7 +143,7 @@ const Login = () => {
                     <p>Ups, algo salio mal... <br/> {msg}</p> 
                     <button
                         className="ok"
-                        onClick={ () => setIsOpen(false) }
+                        onClick={toAgain}
                     >OK</button>
                 </> }
             </ReactModal>

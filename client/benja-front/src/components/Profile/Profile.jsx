@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Profile.css";
 import DataProjects from "../DataProjects/DataProjects";
 import { useDispatch, useSelector } from "react-redux";
 import ImgCanvas from "../ImgCanvas/ImgCanvas";
 import Error404 from "../Error12345/Error";
-import { getProfile, putUser } from "../../redux/actions";
+import { putUser } from "../../redux/actions";
 import ReactModal from "react-modal";
 import Loading from "../Loading/Loading";
 
@@ -17,10 +17,6 @@ const Profile = () => {
         email: profile.email ? profile.email : ""
     });
     const [ isOpen, setIsOpen ] = useState(false);
-
-    useEffect(() => {
-        dispatch(getProfile())
-    }, [dispatch]);
 
     const handleChange = (event) => {
         event.preventDefault();

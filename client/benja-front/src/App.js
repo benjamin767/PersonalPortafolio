@@ -7,6 +7,7 @@ import Footer from "../src/components/Footer/Footer";
 import Register from './components/Register/Register.jsx';
 import Login from "./components/Login/Login.jsx";
 import Profile from './components/Profile/Profile.jsx';
+import CreateProject from './components/CreateProject/CreateProject.jsx';
 
 function App() {
   return (<>
@@ -31,6 +32,10 @@ function App() {
       <Route 
         path='/profile'
         element={<Profile/>}
+      />
+      <Route 
+        path='/create-project'
+        element={<CreateProject/>}
       />
     </Routes>
     <Footer/>
