@@ -3,11 +3,11 @@ import "./Loading.css";
 
 const Loading = () => {
     return (<>
-        <div class="center-body">
-                <div class="loader-circle-11">
-                <div class="arc"></div>
-                <div class="arc"></div>
-                <div class="arc"></div>
+        <div className="center-body">
+                <div className="loader-circle-11">
+                <div className="arc"></div>
+                <div className="arc"></div>
+                <div className="arc"></div>
             </div>
         </div>
     </>);
