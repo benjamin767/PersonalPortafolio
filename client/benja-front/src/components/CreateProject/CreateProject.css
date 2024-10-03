@@ -1,0 +1,31 @@
+#form-create-project {
+    margin-block: 5%;
+    padding: auto;
+}
+
+.main-create-project {
+    text-align: center;
+}
+
+.main-create-project textarea {
+    resize: none;
+    width: 50%;
+    height: 10rem;
+    background: #111;
+    text-align: center;
+    border-right: .5px solid #444;
+    border-bottom: 3px solid #444;
+    border-left: none;
+    border-top: none;
+    resize: none;
+    color: #ddd;
+}
+
+.main-create-project textarea:focus {
+    border-left: none;
+    border-top: none;
+    border-right: 1px solid rgb(44, 148, 3);
+    border-bottom: 3px solid rgb(44, 148, 3);
+    outline: none;
+    text-align: left;
+}

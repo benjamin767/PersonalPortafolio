@@ -1,11 +1,11 @@
 import axios from "axios";
-import setCookie from 'js-cookie';
 
 export const GET_PROFILE = "GET_PROFILE";
 export const LOGIN = "LOGIN";
 export const COOKIE_SAVED = "COOKIE_SAVED";
 export const LOGOUT = "LOGOUT";
 export const SET_SPINNER = "SET_SPINNER";
+export const CREATE_PROJECT = "CREATE_PROJECT";
 
 axios.defaults.withCredentials = true;
 
@@ -103,13 +103,17 @@ export const sendEmail = async ({ email, name, text }) => {
     }
 };
 
-export const saveCookie = (cookieName, cookieValue) => {
-    return (dispatch) => {
-      setCookie(cookieName, cookieValue);
-      dispatch({
-        type: COOKIE_SAVED,
-        payload: { cookieName, cookieValue }
-      });
+export const createProject = ({ title, image, description }) => {
+    return async (dispatch) =>  {
+      try { 
+        await axios.post("http://localhost:3001/project", { title, image, description })
+        .then((res) => dispatch({
+            type: CREATE_PROJECT,
+            payload: res.data
+        }));
+      } catch (error) {
+        console.log(error.message)
+      }
     };
 };
 

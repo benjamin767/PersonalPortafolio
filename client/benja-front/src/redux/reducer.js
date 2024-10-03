@@ -1,14 +1,17 @@
+import Project from "../components/Project/Project";
 import { 
     COOKIE_SAVED,
     GET_PROFILE, 
     LOGIN,
     LOGOUT,
-    SET_SPINNER
+    SET_SPINNER,
+    CREATE_PROJECT
 } from "./actions";
 
 const initialState = {
     profile: {},
-    spinner: false
+    spinner: false,
+    projects: undefined
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -29,6 +32,8 @@ const rootReducer = (state = initialState, action) => {
             return { ...state, profile: action.payload };
         case SET_SPINNER: 
             return { ...state, spinner: action.payload };
+        case CREATE_PROJECT: 
+            return { ...state, projects: action.payload };
         default : return { ...state };
     }
 };

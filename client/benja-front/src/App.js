@@ -12,32 +12,32 @@ import CreateProject from './components/CreateProject/CreateProject.jsx';
 function App() {
   return (<>
     <NavBar/>
-    <Routes>
-      <Route 
-        path='/'
-        element={<Home/>}
-      />
-      <Route 
-        path='/contact'
-        element={<Contact/>}
-      />
-      <Route 
-        path='/register'
-        element={<Register/>}
-      />
-      <Route 
-        path='/login'
-        element={<Login/>}
-      />
-      <Route 
-        path='/profile'
-        element={<Profile/>}
-      />
-      <Route 
-        path='/create-project'
-        element={<CreateProject/>}
-      />
-    </Routes>
+      <Routes>
+        <Route 
+          path='/'
+          element={<Home/>}
+        />
+        <Route 
+          path='/contact'
+          element={<Contact/>}
+        />
+        <Route 
+          path='/register'
+          element={<Register/>}
+        />
+        <Route 
+          path='/login'
+          element={<Login/>}
+        />
+        <Route 
+          path='/profile'
+          element={<Profile/>}
+        />
+        <Route 
+          path='/create-project'
+          element={<CreateProject/>}
+        />
+      </Routes>
     <Footer/>
   </>);
 }
