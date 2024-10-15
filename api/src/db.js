@@ -33,7 +33,10 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models estan todos los modelos importados con propiedades
 // Para relacionarlos hacemos un destructuring
-const { User } = sequelize.models;
+const { Technologie, Project } = sequelize.models;
+
+Technologie.belongsToMany(Project, { through: 'Project_Tech' });
+Project.belongsToMany(Technologie, { through: 'Project_Tech' });
 
 const store = new SequelizeStore({
   db: sequelize,
