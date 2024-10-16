@@ -44,6 +44,10 @@ const NavBar = () => {
             anchor: "Crear un proyecto"
         },
         {
+            slug: "/create-tech", 
+            anchor: "Agregar una tecnologia"
+        },
+        {
             action: handleLogout,
             slug: "/", 
             anchor: "Salir"

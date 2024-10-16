@@ -8,6 +8,7 @@ import Register from './components/Register/Register.jsx';
 import Login from "./components/Login/Login.jsx";
 import Profile from './components/Profile/Profile.jsx';
 import CreateProject from './components/CreateProject/CreateProject.jsx';
+import CreateTech from "./components/CreateTech/CreateTech.jsx"
 
 function App() {
   return (<>
@@ -36,6 +37,10 @@ function App() {
         <Route 
           path='/create-project'
           element={<CreateProject/>}
+        />
+        <Route 
+          path='/create-tech'
+          element={<CreateTech/>}
         />
       </Routes>
     <Footer/>

@@ -5,13 +5,15 @@ import {
     LOGIN,
     LOGOUT,
     SET_SPINNER,
-    CREATE_PROJECT
+    CREATE_PROJECT,
+    CREATE_TECH
 } from "./actions";
 
 const initialState = {
     profile: {},
     spinner: false,
-    projects: undefined
+    projects: undefined,
+    technologies: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -34,6 +36,8 @@ const rootReducer = (state = initialState, action) => {
             return { ...state, spinner: action.payload };
         case CREATE_PROJECT: 
             return { ...state, projects: action.payload };
+        case CREATE_TECH: 
+            return { ...state, technologies: [ ...state.technologies, action.payload ] };
         default : return { ...state };
     }
 };

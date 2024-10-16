@@ -6,6 +6,7 @@ export const COOKIE_SAVED = "COOKIE_SAVED";
 export const LOGOUT = "LOGOUT";
 export const SET_SPINNER = "SET_SPINNER";
 export const CREATE_PROJECT = "CREATE_PROJECT";
+export const CREATE_TECH = "CREATE_TECH";
 
 axios.defaults.withCredentials = true;
 
@@ -113,6 +114,20 @@ export const createProject = ({ title, image, description }) => {
         }));
       } catch (error) {
         console.log(error.message)
+      }
+    };
+};
+
+export const createTech = ({ name, image }) => {
+    return async (dispatch) =>  {
+      try { 
+        await axios.post("http://localhost:3001/technologies", { name, image })
+        .then((res) => dispatch({
+            type: CREATE_TECH,
+            payload: res.data
+        }));
+      } catch (error) {
+        console.log(error.message);
       }
     };
 };
