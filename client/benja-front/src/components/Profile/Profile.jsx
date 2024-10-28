@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Profile.css";
-import DataProjects from "../DataProjects/DataProjects";
 import { useDispatch, useSelector } from "react-redux";
 import ImgCanvas from "../ImgCanvas/ImgCanvas";
 import Error404 from "../Error12345/Error";
@@ -44,16 +43,7 @@ const Profile = () => {
         <ImgCanvas/>
         { spinner ? <Loading/> :
         <>
-            <div className="profile">
-                <button className="edit-button">Editar Datos</button>
-                <main className="projects">
-                    <h2>Proyectos:</h2>
-                    <div className="projects-data">
-                        <DataProjects/>
-                        <DataProjects/>
-                        <DataProjects/>
-                    </div>
-                </main>
+            <div className="profile">                
                 <aside className="profile-data">
                     <h2>Datos proporcionados:</h2>
                     { isEditProfile ? <>
@@ -78,9 +68,10 @@ const Profile = () => {
                                 />
                             </div>
                         </form> 
-                        <div>
+                        <div className="button-box">
                             <button
                                 className="edit-button"
+                                id="edit-button"
                                 onClick={async () => await handleSubmit(profileData)}
                             >
                                 Actualizar
@@ -103,7 +94,6 @@ const Profile = () => {
                     
                         <button 
                             className="edit-button"
-                            id="edit-button"
                             onClick={() =>{
                                 setIsEditProfile(true);
                                 setProfileData({

@@ -6,7 +6,7 @@ function Dropdown({ items = [], dropdownTitle }) {
   const activatorRef = useRef(null);
   const dropdownListRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-
+  
   const clickHandler = () => {
     setIsOpen(!isOpen);
   };
@@ -76,23 +76,27 @@ function Dropdown({ items = [], dropdownTitle }) {
       </button>
       <ul
         ref={dropdownListRef}
-        className={`dropdown_item_list ${isOpen ? "active" : ""} `}
+        className={`dropdown_item_list ${isOpen ? "active" : ""}`}
       >
-        {items.map((item, index) => {
-          return (
-            item.action ? <Link 
+        { items.map((item, index) => {
+          return (item.action ? 
+          <li className={"item_list"}>
+            <Link 
               key={index}
               to={item.slug}
               onClick={() => item.action()}
             >
-              <li className={"item_list"}>{item.anchor}</li> 
-            </Link> :
-            <Link to={item.slug} key={index}>
-              <li className={"item_list"}>
-                {item.anchor}
-              </li>
+              {item.anchor} 
             </Link>
-          );
+          </li> :
+          <li className={"item_list"}>
+            <Link 
+              to={item.slug} 
+              key={index}
+            >
+              {item.anchor}
+            </Link>
+          </li>); 
         })}
       </ul>
     </div>

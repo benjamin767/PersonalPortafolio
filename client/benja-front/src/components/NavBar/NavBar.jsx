@@ -11,30 +11,33 @@ const NavBar = () => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const [ isOpen, setIsOpen ] = useState(false);
-    const userID = useSelector(state => state.profile ? state.profile.id : null );
-    
-    useEffect(() => {
-        dispatch(getProfile())
-    }, [dispatch]);
-
-    const handleClick = (idComponent) => {
-        const compponent = document.getElementById(idComponent);
-        compponent.scrollIntoView({
-            behavior: "smooth"
-        })
-    };
-
     const handleLogout = () => {
         setIsOpen(true);
     };
-
-    const handleSuccess = async () => {
-        await dispatch(logout())
-        .then(() => navigate("/"));
-        setIsOpen(false);
-    };
-
-    const items = [
+    const user = useSelector(state => state.profile);
+    const items = user.rol === "ADMIN" ? [
+        {
+            slug: "/profile", 
+            anchor: "Perfil"
+        },
+        {
+            slug: "/create-project", 
+            anchor: "Crear un proyecto"
+        },
+        {
+            slug: "/create-tech", 
+            anchor: "Agregar una tecnologia"
+        },
+        {
+            slug: "/admin", 
+            anchor: "Ir al Panel de Administrador"
+        },
+        {
+            action: handleLogout,
+            slug: "/", 
+            anchor: "Salir"
+        }
+    ] : [
         {
             slug: "/profile", 
             anchor: "Perfil"
@@ -54,11 +57,32 @@ const NavBar = () => {
         }
     ];
 
+    useEffect(() => {
+        dispatch(getProfile());
+    }, [dispatch]);
+
+    const handleClick = (idComponent) => {
+        const compponent = document.getElementById(idComponent);
+        compponent.scrollIntoView({
+            behavior: "smooth"
+        })
+    };
+
+    const handleSuccess = async () => {
+        await dispatch(logout())
+        .then(() => navigate("/"));
+        setIsOpen(false);
+    };
+
     return (<header>
         <nav>
-            { userID ? <ul>
-                <Dropdown items={items} dropdownTitle={"Acciones"}/> 
-            </ul> : <ul> 
+            { user.id ?
+                <Dropdown 
+                    items={items} 
+                    dropdownTitle={"Acciones"} 
+                    rol={user.rol}
+                /> 
+             : <ul> 
                 <Link to="/register">
                     <div className="register-button">¡Registrate!</div>
                 </Link> 
