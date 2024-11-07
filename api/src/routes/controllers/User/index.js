@@ -15,14 +15,16 @@ module.exports = {
             const payload = {
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                rol: user.rol
             };
             let token = jwt.sign(payload, secret, { expiresIn: expires });
             return { 
                 token, 
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                rol: user.rol
             };
         });
     },
@@ -44,6 +46,7 @@ module.exports = {
             id: user.id,
             name: user.name,
             email: user.email,
+            rol: user.rol
         }
         return userData;
     },
@@ -95,6 +98,7 @@ module.exports = {
                     id: res.id,
                     name: res.name,
                     email: res.email,
+                    rol: res.rol
                 };
                 const isCorrect = bcrypt.compareSync(password, res.password);
                 if(isCorrect){
@@ -103,8 +107,9 @@ module.exports = {
                         token, 
                         id: res.id,
                         name: res.name,
-                        email: res.email
-                     };
+                        email: res.email,
+                        rol: res.rol
+                    };
                 }
             });
         } else {
@@ -118,6 +123,7 @@ module.exports = {
                     id: res.id,
                     name: res.name,
                     email: res.email,
+                    rol: res.rol
                 };
                 const isCorrect = bcrypt.compareSync(password, res.password);
                 if(isCorrect){

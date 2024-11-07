@@ -23,7 +23,8 @@ router.post("/", async (req, res) => {
             msg: "¡Usuario Creado con exito!",
             name: user.name,
             id: user.id,
-            email: user.email
+            email: user.email,
+            rol: user.rol
         });
     } catch(error) {
         console.log(error);
