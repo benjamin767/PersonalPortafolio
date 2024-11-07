@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import "./Contact.css";
 import { sendEmail } from "../../redux/actions";
 import { validation } from "../Register/Register";
+import { useSelector } from "react-redux";
 
 const Contact = () => {
+    const [ errors, setErrors ] = useState({});
+    const user = useSelector(state => state.profile);
     const [ input, setInput ] = useState({
-        email: "",
-        name: "",
+        email: user.email,
+        name: user.name,
         text: ""
     });
-    const [ errors, setErrors ] = useState({});
-
+    
     const handleChange = (event) => {
         event.preventDefault();
         setInput({
@@ -25,8 +27,8 @@ const Contact = () => {
         setErrors( validation({ ...input }, true) )
         await sendEmail(input);
         setInput({
-            email: "",
-            name: "",
+            email: user.email,
+            name: user.name,
             text: ""
         })
     };

@@ -7,8 +7,8 @@ import Contact from "../Contact/Contact";
 const Home = () => {
     const [ input, setInput]  = useState({});
     return (<>
-        <AboutMe/>
         <ProjectContainer projects={[3,3,3]}/>
+        <AboutMe/>
         <Contact/>
     </>);
 };
