@@ -1,10 +1,13 @@
 import React from "react";
 import "./Loading.css";
 
-const Loading = () => {
+const Loading = ({ id }) => {
     return (<>
-        <div className="center-body">
-                <div className="loader-circle-11">
+        <div 
+            id={id}
+            className="center-body"
+        >
+            <div className="loader-circle-11">
                 <div className="arc"></div>
                 <div className="arc"></div>
                 <div className="arc"></div>
