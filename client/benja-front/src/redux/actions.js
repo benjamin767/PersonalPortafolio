@@ -7,6 +7,7 @@ export const LOGOUT = "LOGOUT";
 export const SET_SPINNER = "SET_SPINNER";
 export const CREATE_PROJECT = "CREATE_PROJECT";
 export const CREATE_TECH = "CREATE_TECH";
+export const GET_PRINPAL_PAGE = "GET_PRINPAL_PAGE";
 
 axios.defaults.withCredentials = true;
 
@@ -130,6 +131,18 @@ export const createTech = ({ name, image }) => {
         console.log(error.message);
       }
     };
+};
+
+export const getPrincipalPage = () => async (dispatch) => {
+    try {
+        await axios.get("http://localhost:3001/pages/principal")
+        .then((res) => dispatch({
+            type: GET_PRINPAL_PAGE,
+            payload: res.data
+        }));
+    } catch(error) {
+
+    }
 };
 
 export const setSpinner = (data) => {

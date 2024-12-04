@@ -6,14 +6,16 @@ import {
     LOGOUT,
     SET_SPINNER,
     CREATE_PROJECT,
-    CREATE_TECH
+    CREATE_TECH,
+    GET_PRINPAL_PAGE
 } from "./actions";
 
 const initialState = {
     profile: {},
     spinner: false,
     projects: undefined,
-    technologies: []
+    technologies: [],
+    principal_page: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -38,6 +40,8 @@ const rootReducer = (state = initialState, action) => {
             return { ...state, projects: action.payload };
         case CREATE_TECH: 
             return { ...state, technologies: [ ...state.technologies, action.payload ] };
+        case GET_PRINPAL_PAGE:
+            return { ...state, principal_page: action.payload }
         default : return { ...state };
     }
 };
