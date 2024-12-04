@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./NavBar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { getProfile, logout } from "../../redux/actions";
+import { getProfile, logout, getPrincipalPage } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from 'react-modal';
 import Dropdown from "../Dropdown/Dropdown";
@@ -59,6 +59,7 @@ const NavBar = () => {
 
     useEffect(() => {
         dispatch(getProfile());
+        dispatch(getPrincipalPage());
     }, [dispatch]);
 
     const handleClick = (idComponent) => {
