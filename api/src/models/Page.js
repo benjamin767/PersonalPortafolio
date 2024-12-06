@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+const Project = require('./Project');
 
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
@@ -42,6 +43,6 @@ module.exports = (sequelize) => {
                     msg: "Ingrese un email."
                 },
             },
-        }
+        },
     });
 };

@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+const Page = require('./Page');
 
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
@@ -17,6 +18,7 @@ module.exports = (sequelize) => {
         },
         description: {
             type: DataTypes.TEXT,
-        }
+        },
+        
     });
 };
