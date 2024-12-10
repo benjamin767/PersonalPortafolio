@@ -52,7 +52,7 @@ const ImgCanvas = () => {
             src={ perfil }
             alt="me"
         />
-         <canvas 
+        <canvas 
             ref={canvasRef} 
             className='canvas'
         >
