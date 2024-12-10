@@ -1,44 +1,94 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AdminDashboard.css"
+import CreatePrject from "../CreateProject/CreateProject"
+import CreateTech from "../CreateTech/CreateTech"
 import { PanelMenu } from 'primereact/panelmenu';
 import { Card } from 'primereact/card';
 
 const AdminDashboard = () => {
-    const itemRenderer = (item, options) => (
-        <a className="flex align-items-center px-3 py-2 cursor-pointer" onClick={options.onClick}>
-            <span className={`${item.icon} text-primary`} />
-            <span className={`mx-2 ${item.items && 'font-semibold'}`}>{item.label}</span>
-            {item.shortcut && <span className="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{item.shortcut}</span>}
-        </a>
-    );
+    const [hidden, setHidden] = useState({
+        createPro: true,
+        createTech: true,
+        editAbout: true,
+        editPro: true,
+        editTech: true,
+    });
     const items = [
         {
-            label: "Files",
-            icon: "pi pi-file",
+            label: "Editar About Me",
+            icon: "pi pi-user-edit",
+            command: () => {
+                setHidden({
+                    createPro: true,
+                    createTech: true,
+                    editAbout: false,
+                    editPro: true,
+                    editTech: true,
+                })
+            }
+        },
+        {
+            label: "Editores",
+            icon: "pi pi-pencil",
             items: [
                 {
-                    label: 'Phone',
-                    icon: 'pi pi-mobile'
+                    label: "Editar Proyectos",
+                    command: () => {
+                        setHidden({
+                            createPro: true,
+                            createTech: true,
+                            editAbout: true,
+                            editPro: false,
+                            editTech: true,
+                        })
+                    }
                 },
                 {
-                    label: 'Desktop',
-                    icon: 'pi pi-desktop'
-                },
-                {
-                    label: 'Tablet',
-                    icon: 'pi pi-tablet'
+                    label: "Editar Tecnologia",
+                    command: () => {
+                        setHidden({
+                            createPro: true,
+                            createTech: true,
+                            editAbout: true,
+                            editPro: false,
+                            editTech: true,
+                        })
+                    }
                 }
             ]
         },
         {
-            label: "Cloud",
-            icon: "pi pi-cloud",
-            command: () => {
-                
-            }
+            label: "Crear",
+            icon: "pi pi-plus",
+            items: [
+                {
+                    label: "Crear Proyectos",
+                    command: () => {
+                        setHidden({
+                            createPro: true,
+                            createTech: true,
+                            editAbout: true,
+                            editPro: false,
+                            editTech: true,
+                        })
+                    }
+                },
+                {
+                    label: "Crear Tecnologia",
+                    command: () => {
+                        setHidden({
+                            createPro: true,
+                            createTech: false,
+                            editAbout: true,
+                            editPro: true,
+                            editTech: true,
+                        })
+                    }
+                }
+            ]
         },
         {
-            label: "Desktop",
+            label: "Crear Proyecto",
             icon: "pi pi-desktop",
         },
     ];
@@ -49,7 +99,15 @@ const AdminDashboard = () => {
                     <PanelMenu model={items} className="w-full md:w-20rem" />   
                 </Card>
             </main>
-            <aside></aside>
+            <aside>
+                <Card>
+                    {hidden.createPro ? null : <CreatePrject />}
+                    {hidden.createTech ? null : <CreateTech />}
+                    {hidden.editAbout ? null : <CreatePrject/>}
+                    {hidden.editPro ? null : <CreatePrject/>}
+                    {hidden.editTech ? null : <CreatePrject/>}
+                </Card>
+            </aside>
         </div>
     </>)
 };
