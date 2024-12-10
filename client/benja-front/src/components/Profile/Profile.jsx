@@ -40,10 +40,10 @@ const Profile = () => {
 
     return (<> { profile.id ? 
     <>
-        <ImgCanvas/>
         { spinner ? <Loading/> :
         <>
-            <div className="profile">                
+            <div className="profile">
+                <ImgCanvas/>                
                 <aside className="profile-data">
                     <h2>Datos proporcionados:</h2>
                     { isEditProfile ? <>
