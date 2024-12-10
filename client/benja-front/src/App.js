@@ -9,6 +9,7 @@ import Login from "./components/Login/Login.jsx";
 import Profile from './components/Profile/Profile.jsx';
 import CreateProject from './components/CreateProject/CreateProject.jsx';
 import CreateTech from "./components/CreateTech/CreateTech.jsx"
+import AdminDashboard from './components/AdminDashboard/AdminDashboard.jsx';
 
 function App() {
   return (<>
@@ -17,6 +18,10 @@ function App() {
         <Route 
           path='/'
           element={<Home/>}
+        />
+        <Route 
+          path='/admin'
+          element={<AdminDashboard/>}
         />
         <Route 
           path='/contact'
