@@ -7,8 +7,8 @@ import Loading from "../Loading/Loading"
 const AboutMe = () => {
     const [ principal_page ] = useSelector(state => state.principal_page);
 
-    return (<> { !principal_page ? <Loading id="about-me"/> :
-        <section id="about-me">
+    return (<section id="about-me"> { !principal_page ? <Loading/> :
+        <>
             <ImgCanvas/>
             <div className="description-container">
                 <h1 className="title">Portafolio del Sr <span>{principal_page.name.charAt(0)}</span>{principal_page.name.slice(1)} <span>{principal_page.surname.charAt(0)}</span>{principal_page.surname.slice(1)}</h1>
@@ -16,8 +16,8 @@ const AboutMe = () => {
                     { principal_page.description }
                 </p>
             </div>
-        </section>
-    } </>);
+        </>
+    }</section>);
 };
 
 export default AboutMe;
