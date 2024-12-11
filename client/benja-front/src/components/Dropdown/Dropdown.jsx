@@ -80,16 +80,21 @@ function Dropdown({ items = [], dropdownTitle }) {
       >
         { items.map((item, index) => {
           return (item.action ? 
-          <li className={"item_list"}>
+          <li 
+            className={"item_list"}
+            key={index}
+          >
             <Link 
-              key={index}
               to={item.slug}
               onClick={() => item.action()}
             >
               {item.anchor} 
             </Link>
           </li> :
-          <li className={"item_list"}>
+          <li 
+            className={"item_list"}
+            key={index}
+          >
             <Link 
               to={item.slug} 
               key={index}
