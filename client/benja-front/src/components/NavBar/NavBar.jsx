@@ -5,7 +5,7 @@ import { getProfile, logout, getPrincipalPage } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from 'react-modal';
 import Dropdown from "../Dropdown/Dropdown";
-const ROL = process.env.ROL;
+const ROL = process.env.REACT_APP_ROL;
 
 const NavBar = () => {
     const dispatch = useDispatch();
@@ -20,14 +20,6 @@ const NavBar = () => {
         {
             slug: "/profile", 
             anchor: "Perfil"
-        },
-        {
-            slug: "/create-project", 
-            anchor: "Crear un proyecto"
-        },
-        {
-            slug: "/create-tech", 
-            anchor: "Agregar una tecnologia"
         },
         {
             slug: "/admin", 

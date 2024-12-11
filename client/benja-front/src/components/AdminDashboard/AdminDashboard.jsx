@@ -5,11 +5,13 @@ import CreatePrject from "../CreateProject/CreateProject"
 import CreateTech from "../CreateTech/CreateTech"
 import { PanelMenu } from 'primereact/panelmenu';
 import { Card } from 'primereact/card';
+import Login from "../Login/Login";
 
 const AdminDashboard = () => {
     const [hidden, setHidden] = useState({
         createPro: true,
         createTech: true,
+        createUser: true,
         editAbout: true,
         editPro: true,
         editTech: true,
@@ -22,6 +24,7 @@ const AdminDashboard = () => {
                 setHidden({
                     createPro: true,
                     createTech: true,
+                    createUser: true,
                     editAbout: false,
                     editPro: true,
                     editTech: true,
@@ -35,7 +38,8 @@ const AdminDashboard = () => {
                 setHidden({
                     createPro: true,
                     createTech: true,
-                    editAbout: false,
+                    createUser: false,
+                    editAbout: true,
                     editPro: true,
                     editTech: true,
                 })
@@ -48,6 +52,7 @@ const AdminDashboard = () => {
                 setHidden({
                     createPro: true,
                     createTech: true,
+                    createUser: true,
                     editAbout: false,
                     editPro: true,
                     editTech: true,
@@ -55,15 +60,18 @@ const AdminDashboard = () => {
             }
         },
         {
+            key: '0',
             label: "Editores",
             icon: "pi pi-pencil",
             items: [
-                {
+                {   
+                    key: '0_1',
                     label: "Editar Proyectos",
                     command: () => {
                         setHidden({
                             createPro: true,
                             createTech: true,
+                            createUser: true,
                             editAbout: true,
                             editPro: false,
                             editTech: true,
@@ -71,11 +79,13 @@ const AdminDashboard = () => {
                     }
                 },
                 {
+                    key: '0_2',
                     label: "Editar Tecnologia",
                     command: () => {
                         setHidden({
                             createPro: true,
                             createTech: true,
+                            createUser: true,
                             editAbout: true,
                             editPro: true,
                             editTech: false,
@@ -85,15 +95,18 @@ const AdminDashboard = () => {
             ]
         },
         {
+            key: '0',
             label: "Crear",
             icon: "pi pi-plus",
             items: [
                 {
+                    key: '0_1',
                     label: "Crear Proyectos",
                     command: () => {
                         setHidden({
                             createPro: true,
                             createTech: true,
+                            createUser: true,
                             editAbout: true,
                             editPro: false,
                             editTech: true,
@@ -101,11 +114,13 @@ const AdminDashboard = () => {
                     }
                 },
                 {
+                    key: '0_2',
                     label: "Crear Tecnologia",
                     command: () => {
                         setHidden({
                             createPro: true,
                             createTech: false,
+                            createUser: true,
                             editAbout: true,
                             editPro: true,
                             editTech: true,
@@ -127,20 +142,21 @@ const AdminDashboard = () => {
         <div id="admin-dashboard">
             <main className="admin-dashboard_menu">
                 <Card 
-                    title="Menu Administrativo"
+                    title={"Panel del Admin"}
                     footer={footer}
-                    className="text-center"
+                    className="text-center flex flex-row align-content-center justify-content-center w-full surface-600 text-white-alpha-90"
                 >
-                    <PanelMenu model={items} className="w-full md:w-20rem" />   
+                    <PanelMenu model={items} className="md:w-15rem" />   
                 </Card>
             </main>
             <aside className="admin-dashboard_info">
                 <Card 
-                    className="w-100rem"
+                    className="w-100rem surface-600 text-white-alpha-90"
                 >
                     <CANVA title={"Herramientas de Administrador"}/>
                     {hidden.createPro ? null : <CreatePrject/>}
                     {hidden.createTech ? null : <CreateTech/>}
+                    {hidden.createUser ? null : <Login/>}
                     {hidden.editAbout ? null : <CreatePrject/>}
                     {hidden.editPro ? null : <CreatePrject/>}
                     {hidden.editTech ? null : <CreateTech/>}
