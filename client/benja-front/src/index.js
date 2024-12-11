@@ -8,6 +8,7 @@ import store from './redux/store';
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/themes/lara-light-cyan/theme.css"
 import 'primeicons/primeicons.css';
+import "/node_modules/primeflex/primeflex.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const value = {
