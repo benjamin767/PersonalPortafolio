@@ -9,7 +9,8 @@
 
 .img-profile {
     position: relative;
-    width: 35%;
+    width: 100%;
+    text-align: center;
 }
 
 .img-profile img {

@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import "./ImgCanvas.css";
 import perfil from "./img/bmino.png"
 
-const ImgCanvas = () => {
+const ImgCanvas = ({ title }) => {
     const canvasRef = useRef({});
 
     useEffect(() => {
@@ -45,19 +45,27 @@ const ImgCanvas = () => {
         draw();
     }, []);
     return (<div 
-        className="img-profile"
-    >
-       
-        <img 
-            src={ perfil }
-            alt="me"
-        />
-        <canvas 
-            ref={canvasRef} 
-            className='canvas'
-        >
-        </canvas>
-        
+            className="img-profile"
+        > { !title ? <>
+            <img 
+                src={ perfil }
+                alt="me"
+            />
+            <canvas 
+                ref={canvasRef} 
+                className='canvas'
+            >
+            </canvas> 
+        </>
+        : <>
+            <h2>{title}</h2>
+            <canvas 
+                ref={canvasRef} 
+                className='canvas'
+            >
+            </canvas> 
+        </> 
+    }
     </div>);
 };
 
