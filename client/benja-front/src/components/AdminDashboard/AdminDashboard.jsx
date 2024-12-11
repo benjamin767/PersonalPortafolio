@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./AdminDashboard.css"
+import CANVA from "../ImgCanvas/ImgCanvas"
 import CreatePrject from "../CreateProject/CreateProject"
 import CreateTech from "../CreateTech/CreateTech"
 import { PanelMenu } from 'primereact/panelmenu';
@@ -17,6 +18,32 @@ const AdminDashboard = () => {
         {
             label: "Editar About Me",
             icon: "pi pi-user-edit",
+            command: () => {
+                setHidden({
+                    createPro: true,
+                    createTech: true,
+                    editAbout: false,
+                    editPro: true,
+                    editTech: true,
+                })
+            }
+        },
+        {
+            label: "Crear un Usuario",
+            icon: "pi pi-user-plus",
+            command: () => {
+                setHidden({
+                    createPro: true,
+                    createTech: true,
+                    editAbout: false,
+                    editPro: true,
+                    editTech: true,
+                })
+            }
+        },
+        {
+            label: "Analisis de la pagina",
+            icon: "pi pi-chart-bar",
             command: () => {
                 setHidden({
                     createPro: true,
@@ -50,8 +77,8 @@ const AdminDashboard = () => {
                             createPro: true,
                             createTech: true,
                             editAbout: true,
-                            editPro: false,
-                            editTech: true,
+                            editPro: true,
+                            editTech: false,
                         })
                     }
                 }
@@ -88,24 +115,35 @@ const AdminDashboard = () => {
             ]
         },
         {
-            label: "Crear Proyecto",
-            icon: "pi pi-desktop",
+            label: "Cerrar Sesion",
+            icon: "pi pi-sign-out",
+            command: () => {
+                
+            }
         },
     ];
+    const footer = (<span className="text-400 text-xs">Pagina desarrollada por Benjamin Miño</span>);
     return (<>
         <div id="admin-dashboard">
             <main className="admin-dashboard_menu">
-                <Card title="Menu">
+                <Card 
+                    title="Menu Administrativo"
+                    footer={footer}
+                    className="text-center"
+                >
                     <PanelMenu model={items} className="w-full md:w-20rem" />   
                 </Card>
             </main>
-            <aside>
-                <Card>
-                    {hidden.createPro ? null : <CreatePrject />}
-                    {hidden.createTech ? null : <CreateTech />}
+            <aside className="admin-dashboard_info">
+                <Card 
+                    className="w-100rem"
+                >
+                    <CANVA title={"Herramientas de Administrador"}/>
+                    {hidden.createPro ? null : <CreatePrject/>}
+                    {hidden.createTech ? null : <CreateTech/>}
                     {hidden.editAbout ? null : <CreatePrject/>}
                     {hidden.editPro ? null : <CreatePrject/>}
-                    {hidden.editTech ? null : <CreatePrject/>}
+                    {hidden.editTech ? null : <CreateTech/>}
                 </Card>
             </aside>
         </div>
