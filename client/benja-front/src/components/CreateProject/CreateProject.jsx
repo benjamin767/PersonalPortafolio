@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./CreateProject.css";
-import ImgCanvas from "../ImgCanvas/ImgCanvas";
 import { useDispatch, useSelector } from "react-redux";
 import Error404 from "../Error12345/Error";
 import { createProject } from "../../redux/actions";
@@ -23,7 +22,7 @@ const CreateProject = () => {
         createProject(dispatch(createProject(input)));
     };
 
-    return (<> <ImgCanvas/>
+    return (<>
     { profile.id ? 
         <>
             <main className="main-create-project">
