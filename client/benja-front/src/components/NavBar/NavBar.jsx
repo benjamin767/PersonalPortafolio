@@ -5,6 +5,7 @@ import { getProfile, logout, getPrincipalPage } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import ReactModal from 'react-modal';
 import Dropdown from "../Dropdown/Dropdown";
+const ROL = process.env.ROL;
 
 const NavBar = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const NavBar = () => {
         setIsOpen(true);
     };
     const user = useSelector(state => state.profile);
-    const items = user.rol === "ADMIN" ? [
+    const items = user.rol === ROL ? [
         {
             slug: "/profile", 
             anchor: "Perfil"
@@ -41,14 +42,6 @@ const NavBar = () => {
         {
             slug: "/profile", 
             anchor: "Perfil"
-        },
-        {
-            slug: "/create-project", 
-            anchor: "Crear un proyecto"
-        },
-        {
-            slug: "/create-tech", 
-            anchor: "Agregar una tecnologia"
         },
         {
             action: handleLogout,
