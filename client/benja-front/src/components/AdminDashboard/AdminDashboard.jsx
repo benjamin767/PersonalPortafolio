@@ -5,9 +5,13 @@ import CreatePrject from "../CreateProject/CreateProject"
 import CreateTech from "../CreateTech/CreateTech"
 import { PanelMenu } from 'primereact/panelmenu';
 import { Card } from 'primereact/card';
-import Login from "../Login/Login";
+import Register from "../Register/Register";
+import EditAboutMe from "./EditAboutMe/EditAboutMe";
+import { logout } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const AdminDashboard = () => {
+    const dispatch = useDispatch();
     const [hidden, setHidden] = useState({
         createPro: true,
         createTech: true,
@@ -18,7 +22,7 @@ const AdminDashboard = () => {
     });
     const items = [
         {
-            label: "Editar About Me",
+            label: "Editar Datos",
             icon: "pi pi-user-edit",
             command: () => {
                 setHidden({
@@ -133,7 +137,7 @@ const AdminDashboard = () => {
             label: "Cerrar Sesion",
             icon: "pi pi-sign-out",
             command: () => {
-                
+                dispatch(logout())
             }
         },
     ];
@@ -156,8 +160,8 @@ const AdminDashboard = () => {
                     <CANVA title={"Herramientas de Administrador"}/>
                     {hidden.createPro ? null : <CreatePrject/>}
                     {hidden.createTech ? null : <CreateTech/>}
-                    {hidden.createUser ? null : <Login/>}
-                    {hidden.editAbout ? null : <CreatePrject/>}
+                    {hidden.createUser ? null : <Register/>}
+                    {hidden.editAbout ? null : <EditAboutMe/>}
                     {hidden.editPro ? null : <CreatePrject/>}
                     {hidden.editTech ? null : <CreateTech/>}
                 </Card>
