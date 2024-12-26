@@ -16,6 +16,7 @@ router.post("/", isAuthenticated, async (req, res) => {
         const project = await createProject(title, description, image, token);
         res.status(201).json({ project });
     }catch(error) {
+        console.log(error)
         res.status(404).send({ msg: error.message });
     }
 });

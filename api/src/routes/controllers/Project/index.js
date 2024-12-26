@@ -1,4 +1,4 @@
-const { Project, User } = require("../../../db");
+const { Project, User, Page } = require("../../../db");
 const jwt = require("jsonwebtoken");
 const { secret } = process.env;
 
@@ -11,11 +11,15 @@ module.exports = {
         const { rol } = await User.findByPk(data.id);
 
         if(rol === "ADMIN"){
-            return await Project.create({
+            principal = await Page.findByPk("principal")
+            console.log(principal.id)
+            project = await Project.create({
                 title,
                 description,
                 image,
             });
+            principal.addProject(project)
+            return project
         }
         throw new Error("Me parece a mi que no tenes permisos querido, disculpame");
     },
