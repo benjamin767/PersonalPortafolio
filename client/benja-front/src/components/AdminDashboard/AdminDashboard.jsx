@@ -17,6 +17,7 @@ const AdminDashboard = () => {
         createTech: true,
         createUser: true,
         editAbout: true,
+        analitycs: true,
         editPro: true,
         editTech: true,
     });
@@ -30,6 +31,7 @@ const AdminDashboard = () => {
                     createTech: true,
                     createUser: true,
                     editAbout: false,
+                    analitycs: true,
                     editPro: true,
                     editTech: true,
                 })
@@ -44,6 +46,7 @@ const AdminDashboard = () => {
                     createTech: true,
                     createUser: false,
                     editAbout: true,
+                    analitycs: true,
                     editPro: true,
                     editTech: true,
                 })
@@ -57,7 +60,8 @@ const AdminDashboard = () => {
                     createPro: true,
                     createTech: true,
                     createUser: true,
-                    editAbout: false,
+                    editAbout: true,
+                    analitycs: false,
                     editPro: true,
                     editTech: true,
                 })
@@ -77,6 +81,7 @@ const AdminDashboard = () => {
                             createTech: true,
                             createUser: true,
                             editAbout: true,
+                            analitycs: true,
                             editPro: false,
                             editTech: true,
                         })
@@ -91,6 +96,7 @@ const AdminDashboard = () => {
                             createTech: true,
                             createUser: true,
                             editAbout: true,
+                            analitycs: true,
                             editPro: true,
                             editTech: false,
                         })
@@ -112,6 +118,7 @@ const AdminDashboard = () => {
                             createTech: true,
                             createUser: true,
                             editAbout: true,
+                            analitycs: true,
                             editPro: false,
                             editTech: true,
                         })
@@ -126,6 +133,7 @@ const AdminDashboard = () => {
                             createTech: false,
                             createUser: true,
                             editAbout: true,
+                            analitycs: true,
                             editPro: true,
                             editTech: true,
                         })
@@ -161,6 +169,7 @@ const AdminDashboard = () => {
                     {hidden.createPro ? null : <CreatePrject/>}
                     {hidden.createTech ? null : <CreateTech/>}
                     {hidden.createUser ? null : <Register/>}
+                    {hidden.analitycs ? null: <h3>Proximamente estara disponible esta seccion</h3>}
                     {hidden.editAbout ? null : <EditAboutMe/>}
                     {hidden.editPro ? null : <CreatePrject/>}
                     {hidden.editTech ? null : <CreateTech/>}
