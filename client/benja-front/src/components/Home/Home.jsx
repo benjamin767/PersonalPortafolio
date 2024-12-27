@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Home.css"
 import AboutMe from "../AboutMe/AboutMe";
 import ProjectContainer from "../ProjectContainer/ProjectContainer";
 import Contact from "../Contact/Contact";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-    const [ input, setInput]  = useState({});
+    const principal = useSelector(state => state.principal_page[0]);
+
     return (<>
-        <ProjectContainer projects={[3,3,3]}/>
+        {console.log(principal)}
+        <ProjectContainer projects={principal.projects}/>
         <AboutMe/>
         <Contact/>
     </>);

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Project.css";
 
-const Project = () => {
+const Project = ({ title, description }) => {
     return (<div className="card">
         
         <img 
@@ -9,12 +9,15 @@ const Project = () => {
             className="web-img"
             alt="poyectoWeb"
         />
-        <h2>Titulo Random de un super proyecto</h2>
+        <h2> { title ? title: `Titulo Random de un super proyecto` }</h2>
         
         <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-            Voluptatem sint totam rerum distinctio adipisci ut dolores autem quis accusantium id incidunt, 
-            culpa eveniet modi eum aspernatur vel atque beatae temporibus.
+            { 
+                description ? description 
+                : `Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                Voluptatem sint totam rerum distinctio adipisci ut dolores autem quis accusantium id incidunt, 
+                culpa eveniet modi eum aspernatur vel atque beatae temporibus.`
+            }
         </p>
         <ul>
             <li>Tecnologia 1</li>

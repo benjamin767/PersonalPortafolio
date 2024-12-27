@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
     try {
         const projects = await getAllProjects();
         res.status(200).json({ projects });
-    }catch(error) {
+    } catch(error) {
         res.status(404).send({ msg: error.message });
     }
 });
