@@ -4,6 +4,8 @@ const midlewareNodemailer = require("./nodemail");
 const midlewareProject = require("./project");
 const midlewareTechnologie = require("./technologies");
 const midlewarePage  = require("./pages");
+const midlewareAWS  = require("./aws");
+
 
 const router = Router();
 
@@ -13,5 +15,6 @@ router.use("/mail", midlewareNodemailer);
 router.use("/project", midlewareProject);
 router.use("/technologies", midlewareTechnologie);
 router.use("/pages", midlewarePage)
+router.use("/aws", midlewareAWS);
 
 module.exports = router;

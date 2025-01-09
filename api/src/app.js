@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const session = require('express-session');
 const { store } =require("./db.js")
+const path = require("path");
+require("dotenv").config();
 
 require('./db.js');
 
@@ -13,6 +15,7 @@ const { secret } = process.env;
 
 server.name = 'API';
 
+server.use(express.static(path.join(__dirname, "public")));
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 server.use(cookieParser());
