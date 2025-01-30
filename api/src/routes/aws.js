@@ -11,12 +11,14 @@ router.post("/", upload.single("file"), async (req, res) => {
         Key: originalname,
         Body: buffer,
     };
+    const fileKey = Date.now() + "-" + file.originalname;
     try {
         await s3.send(new PutObjectCommand(params));
-        const fileUrl = `https://${bucketName}.s3.${process.env.AWS_REGION}.amazonaws.com/${file.originalname}`;
+        const fileUrl = `https://${bucketName}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileKey}`;
         res.status(201).send({
             message: "Archivo subido con éxito.",
             url: fileUrl, // URL pública del archivo
+            key: fileKey, // Key del archivo en el
         });
     } catch (error) {
         res.status(404).send(error.message);

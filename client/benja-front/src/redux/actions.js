@@ -119,6 +119,25 @@ export const createProject = ({ title, image, description }) => {
     };
 };
 
+export const uploadImage = async (file) => {
+
+    try {
+        const response = await fetch("http://localhost:3001/aws", {
+            method: "POST",
+            body: file,
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            return data;
+        } else {
+            console.error("Error al subir el archivo:", data.message);
+        }
+    } catch (error) {
+        console.error("Error al subir el archivo:", error);
+    }
+}
+
 export const createTech = ({ name, image }) => {
     return async (dispatch) =>  {
       try { 

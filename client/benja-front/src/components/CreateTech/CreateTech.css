@@ -1,3 +1,7 @@
 .create-tech {
     text-align: center;
 }
+
+.create-tech div {
+    margin: 10px;
+}

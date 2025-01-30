@@ -1,7 +1,7 @@
 import React from "react";
 import "./Project.css";
 
-const Project = ({ title, description }) => {
+const Project = ({ data: { title, description } }) => {
     return (<div className="card">
         
         <img 
