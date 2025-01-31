@@ -97,7 +97,7 @@ const CreateTech = () => {
                     } </div>
                     <button
                         className="edit-button"
-                        onClick={handleClick}
+                        onClick={(event) => handleClick(event, input)}
                     >
                         CREAR
                     </button>

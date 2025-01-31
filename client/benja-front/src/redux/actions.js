@@ -122,16 +122,15 @@ export const createProject = ({ title, image, description }) => {
 export const uploadImage = async (file) => {
 
     try {
-        const response = await fetch("http://localhost:3001/aws", {
-            method: "POST",
-            body: file,
+        const response = await axios.post("http://localhost:3001/aws", file, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         });
-
-        const data = await response.json();
-        if (response.ok) {
-            return data;
+        if (response.data) {
+            return response.data;
         } else {
-            console.error("Error al subir el archivo:", data.message);
+            console.error("Error al subir el archivo:", response.message);
         }
     } catch (error) {
         console.error("Error al subir el archivo:", error);

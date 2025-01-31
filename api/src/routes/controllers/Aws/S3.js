@@ -1,5 +1,6 @@
 const { S3Client } = require("@aws-sdk/client-s3");
 const { YOUR_ACCESS_KEY_ID, YOUR_SECRET_ACCESS_KEY, YOUR_REGION } = process.env;
+const path = require("path")
 const multer = require("multer");
 
 const s3 = new S3Client({
